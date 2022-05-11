@@ -8,7 +8,7 @@ int main(void)
 	
 	while (1)
 	{
-		
+		LCD_String("Hello, Someone!");
 	}
 	
 }
