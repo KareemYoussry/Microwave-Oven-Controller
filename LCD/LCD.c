@@ -7,12 +7,14 @@ void LCD_Write_Hb(unsigned char data, unsigned char control)
 	data		&=	0xF0;	/* Extract upper nibble for data */
 	control	&=	0x0F;	/* Extract lower nibble for control */
 	GPIO_PORTB_DATA_R = data | control;	/* Set RS and R/W bits to zero for write operation */
-	GPIO_PORTB_DATA_R = data | control | 0x80;	/* Provide Pulse to Enable pin to perform wite operation */
+	GPIO_PORTB_DATA_R = data | control | EN;	/* Provide Pulse to Enable pin to perform write operation */
 	Systick_Wait_1ms();
 	GPIO_PORTB_DATA_R = data;	/* Send data */
-	Systick_Wait_ms(5);
-	GPIO_PORTB_DATA_R &= ~0x80;
+	Systick_Wait_1ms();
+	GPIO_PORTB_DATA_R  = 0;
+	GPIO_PORTB_DATA_R &= ~EN;
 }
+
 
 void LCD_Cmd(unsigned char command)
 {
@@ -28,13 +30,14 @@ void LCD_Cmd(unsigned char command)
 void LCD_Init(void)
 {
 	SYSCTL_RCGCGPIO_R	|= (1<<1);	/* Enable Clock to GPIOB */
+	GPIO_PORTB_PCTL_R	&= 	0x10;
 	GPIO_PORTB_DIR_R	|=	0xFF;		/* Set GPIOB all pins a digital output pins */
 	GPIO_PORTB_DEN_R	|=	0xFF;		/* Declare GPIOB pins as digital pins */
 	
 	// The following commands are defined in the header file	
 	LCD_Cmd(Function_set_4bit);	/* Select 4-bit Mode of LCD */
 	LCD_Cmd(displayOn);					/* Sets the display on */
-	LCD_Cmd(moveCursorRight);		/* shift cursor right */
+//LCD_Cmd(moveCursorRight);		/* shift cursor right */
 	LCD_Cmd(clear_display);			/* clear whatever is written on display */
 }
 
