@@ -1,24 +1,23 @@
 #include "LCD.h"
 #include "../timer/timer.h"
 
+
 void LCD_Write_Hb(unsigned char data, unsigned char control)
 {
 	data		&=	0xF0;	/* Extract upper nibble for data */
 	control	&=	0x0F;	/* Extract lower nibble for control */
 	GPIO_PORTB_DATA_R = data | control;	/* Set RS and R/W bits to zero for write operation */
-	GPIO_PORTB_DATA_R = data | control | 0x20;	/* Provide Pulse to Enable pin to perform wite operation */
+	GPIO_PORTB_DATA_R = data | control | 0x80;	/* Provide Pulse to Enable pin to perform wite operation */
 	Systick_Wait_1ms();
-	GPIO_PORTB_DATA_R &= ~0x20;
-	
 	GPIO_PORTB_DATA_R = data;	/* Send data */
-	GPIO_PORTB_DATA_R = 0;		/* Stop writing data to LCD */
 	Systick_Wait_ms(5);
+	GPIO_PORTB_DATA_R &= ~0x80;
 }
 
 void LCD_Cmd(unsigned char command)
 {
-	LCD_Write_Hb(command & 0xF0, 0);   /* Write upper nibble to LCD */
-	LCD_Write_Hb(command << 4, 0);     /* Write lower nibble to LCD */
+	LCD_Write_Hb(command & 0xF0, 0);   /* Write upper 4 bits to LCD */
+	LCD_Write_Hb(command << 4, 0);     /* Write lower 4 bits to LCD */
 	
 	if (command < 4)
 		Systick_Wait_ms(2);		/* 2ms delay for commands 1 and 2 */
