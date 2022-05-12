@@ -30,15 +30,16 @@ void LCD_Cmd(unsigned char command)
 void LCD_Init(void)
 {
 	SYSCTL_RCGCGPIO_R	|= (1<<1);	/* Enable Clock to GPIOB */
-	GPIO_PORTB_PCTL_R	&= 	0x10;
+	Systick_Wait_ms(10);
 	GPIO_PORTB_DIR_R	|=	0xFF;		/* Set GPIOB all pins a digital output pins */
 	GPIO_PORTB_DEN_R	|=	0xFF;		/* Declare GPIOB pins as digital pins */
 	
 	// The following commands are defined in the header file	
 	LCD_Cmd(Function_set_4bit);	/* Select 4-bit Mode of LCD */
-	LCD_Cmd(displayOn);					/* Sets the display on */
-//LCD_Cmd(moveCursorRight);		/* shift cursor right */
+	LCD_Cmd(Entry_mode);				
+//	LCD_Cmd(moveCursorRight);		/* shift cursor right */
 	LCD_Cmd(clear_display);			/* clear whatever is written on display */
+	LCD_Cmd(displayOn);					/* Sets the display on */
 }
 
 void LCD_Write_Char(unsigned char data)
