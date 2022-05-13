@@ -6,7 +6,7 @@
 int main(void)
 {
 	char string;
-	
+	int i = 0, j = 0;
 	LCD_Init();
 	keypad_Init();
 
@@ -18,12 +18,17 @@ int main(void)
 	
 	while (1)
 	{
+		i++;
 		string = keypad_getkey();
 		LCD_Write_Char(string);
 		
 		Systick_Wait_ms(250);
-		
-
+		if(i > 15)
+		{
+			for(j = 0; j<24;j++)
+				LCD_Write_Char(' ');
+			i = 0;
+		}
 		string = 0;
 	}
 

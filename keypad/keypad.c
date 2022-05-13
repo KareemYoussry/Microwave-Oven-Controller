@@ -15,7 +15,7 @@ void keypad_Init()
 	while ((SYSCTL->RCGCGPIO&0x14)==0);	//wait for clock to be setted
 	GPIO_PORTC_CR_R  |= 0xF0;			//Allow settings for all pins of PORTC
 	GPIO_PORTE_CR_R  |= 0x0F;			//Allow settings for all pins of PORTD
-	GPIO_PORTE_DIR_R |= 0x00;			//PE1-PE4 are used with row and set them as digital input pins
+	GPIO_PORTE_DIR_R |= 0x00;			//PE0-PE3 are used with row and set them as digital input pins
 	GPIO_PORTC_DIR_R |= 0xF0;			//Set PORTC as digital output
 	GPIO_PORTE_PDR_R |= 0x0F;			//Enable pull down resistor on PORTE
 	GPIO_PORTC_DEN_R |= 0xF0;			//Set PORTC as digital pins

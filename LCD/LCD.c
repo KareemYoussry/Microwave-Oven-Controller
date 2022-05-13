@@ -1,5 +1,5 @@
-#include "LCD.h"
-#include "../timer/timer.h"
+#include"LCD.h"
+#include"../timer/timer.h"
 
 
 void LCD_Write_Hb(unsigned char data, unsigned char control)
@@ -21,7 +21,7 @@ void LCD_Cmd(unsigned char command)
 	if (command < 4)
 		Systick_Wait_ms(2);		/* 2ms delay for commands 1 and 2 */
 	else
-		Systick_Wait_us(100);	/* 40us delay for other commands */
+		Systick_Wait_us(40);	/* 40us delay for other commands */
 }
 
 void LCD_Init(void)
