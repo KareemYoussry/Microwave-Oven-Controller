@@ -6,13 +6,11 @@ void LCD_Write_Hb(unsigned char data, unsigned char control)
 {
 	data		&=	0xF0;	/* Extract upper nibble for data */
 	control	&=	0x0F;	/* Extract lower nibble for control */
-	GPIO_PORTB_DATA_R = data | control;	/* Set RS and R/W bits to zero for write operation */
-	GPIO_PORTB_DATA_R = data | control | EN;	/* Provide Pulse to Enable pin to perform write operation */
+	GPIO_PORTB_DATA_R	 = data | control;	/* Set RS and R/W bits to zero for write operation */
+	GPIO_PORTB_DATA_R	|= EN;	/* Provide Pulse to Enable pin to perform write operation */
 	Systick_Wait_1ms();
-	GPIO_PORTB_DATA_R = data;	/* Send data */
-	Systick_Wait_1ms();
-	GPIO_PORTB_DATA_R  = 0;
-	GPIO_PORTB_DATA_R &= ~EN;
+	GPIO_PORTB_DATA_R	&= ~EN;		/* Turns off the pulse from the Enable pin */
+	GPIO_PORTB_DATA_R	 = 0;			/* Resets PORTB */
 }
 
 
@@ -37,9 +35,9 @@ void LCD_Init(void)
 	// The following commands are defined in the header file	
 	LCD_Cmd(Function_set_4bit);	/* Select 4-bit Mode of LCD */
 	LCD_Cmd(Entry_mode);				
-//	LCD_Cmd(moveCursorRight);		/* shift cursor right */
+//LCD_Cmd(moveCursorRight);		/* shift cursor right */
 	LCD_Cmd(clear_display);			/* clear whatever is written on display */
-	LCD_Cmd(displayOn);					/* Sets the display on */
+	LCD_Cmd(displayOn);					/* Sets the display on with cursor blinking */
 }
 
 void LCD_Write_Char(unsigned char data)
@@ -52,7 +50,7 @@ void LCD_Write_Char(unsigned char data)
 void LCD_String (char *str)
 {
 	int i;
-	for(i=0;str[i]!=0;i++)	/* Send each char of string till it reaches NULL */
+	for(i = 0; str[i]!= '\0'; i++)	/* Send each char of string till it reaches NULL */
 	{
 		LCD_Write_Char(str[i]);	/* Call LCD data write for each character */
 	}

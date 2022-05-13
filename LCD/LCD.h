@@ -13,7 +13,7 @@
 #define clear_display			0x01
 #define returnHome				0x02
 #define Entry_mode				0x06
-#define	displayOn					0x0E
+#define	displayOn					0x0F
 #define moveCursorRight		0x14
 #define moveCursorLeft		0x10
 #define shiftDisplayRight	0x1F
