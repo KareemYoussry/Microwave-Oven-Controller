@@ -13,7 +13,6 @@ void LCD_Write_Hb(unsigned char data, unsigned char control)
 	GPIO_PORTB_DATA_R	 = 0;			/* Resets PORTB */
 }
 
-
 void LCD_Cmd(unsigned char command)
 {
 	LCD_Write_Hb(command & 0xF0, 0);   /* Write upper 4 bits to LCD */

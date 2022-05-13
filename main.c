@@ -14,8 +14,9 @@ int main(void)
 	LCD_Write_Char('X');
 	LCD_String("Hello!");
 
-	Systick_Wait_ms(10000);
-
+	Systick_Wait_ms(1000);
+	LCD_Cmd(clear_display);
+	
 	while (1)
 	{
 		string[count] = keypad_getkey();

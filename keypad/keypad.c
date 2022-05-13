@@ -2,7 +2,7 @@
 #include "../timer/timer.h"
 #include "keypad.h"
 
-unsigned char keypad_symbols[ROW_NO][COL_NO] =	{ 
+unsigned char keypad_symbols[ROW_NO][COL_NO] =	{
 {'1', '2', '3', 'A'},
 {'4', '5', '6', 'B'},
 {'7', '8', '9', 'C'},
@@ -14,12 +14,12 @@ void keypad_Init()
 	SYSCTL_RCGCGPIO_R |= 0x14;					//Enable clock to PORTC and PORTE  
 	while ((SYSCTL->RCGCGPIO&0x14)==0);	//wait for clock to be setted
 	GPIO_PORTC_CR_R  |= 0xF0;			//Allow settings for all pins of PORTC
-	GPIO_PORTE_CR_R  |= 0x1E;			//Allow settings for all pins of PORTD
+	GPIO_PORTE_CR_R  |= 0x0F;			//Allow settings for all pins of PORTD
 	GPIO_PORTE_DIR_R |= 0x00;			//PE1-PE4 are used with row and set them as digital input pins
 	GPIO_PORTC_DIR_R |= 0xF0;			//Set PORTC as digital output
-	GPIO_PORTE_PDR_R |= 0x1E;			//Enable pull down resistor on PORTE
+	GPIO_PORTE_PDR_R |= 0x0F;			//Enable pull down resistor on PORTE
 	GPIO_PORTC_DEN_R |= 0xF0;			//Set PORTC as digital pins
-	GPIO_PORTE_DEN_R |= 0x1E;			//Set PORTE as digital pins
+	GPIO_PORTE_DEN_R |= 0x0F;			//Set PORTE as digital pins
 }
 
 char keypad_getkey(void)
@@ -34,7 +34,8 @@ char keypad_getkey(void)
 			
 			for(j = 0; j < ROW_NO; j++)
 			{
-				if ((GPIO_PORTE_DATA_R & 0x1E) & (1U << (j+1)))
+				if ((GPIO_PORTE_DATA_R & 0x0F) & (1U << (j+1)))
+					Systick_Wait_ms(10);
 					return keypad_symbols[j][i];
 			}
 		}
