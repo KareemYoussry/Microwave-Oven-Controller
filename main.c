@@ -2,7 +2,6 @@
 #include "./LCD/LCD.h"
 #include "./keypad/keypad.h"
 
-
 int main(void)
 {
 	char string;
@@ -23,14 +22,8 @@ int main(void)
 		LCD_Write_Char(string);
 		
 		Systick_Wait_ms(250);
-		if(i > 15)
-		{
-			for(j = 0; j<24;j++)
-				LCD_Write_Char(' ');
-			i = 0;
-		}
+
 		string = 0;
 	}
 
 }
-

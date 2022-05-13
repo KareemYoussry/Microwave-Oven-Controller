@@ -22,6 +22,8 @@
 #define Function_set_8bit	0x33
 #define Set5x11FontSize		0x20
 #define FirstRow					0x80
+#define SecondRow					0xC0
+
 
 /* LCD Function Prototypes */
 void LCD_Write_Hb(unsigned char data, unsigned char control);	/* Writes 4-bits */
