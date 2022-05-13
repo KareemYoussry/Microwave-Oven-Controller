@@ -22,6 +22,11 @@ int main(void)
 		string[count] = keypad_getkey();
 		LCD_Write_Char(string[count]);
 		count++;
+		
+		Systick_Wait_ms(20);
+		
+		if (count>20)
+			count = 0;
 	}
 
 }
