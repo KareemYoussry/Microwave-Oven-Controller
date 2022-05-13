@@ -5,7 +5,7 @@
 
 int main(void)
 {
-	char string[20];
+	char string[32];
 	int count = 0;
 	
 	LCD_Init();
