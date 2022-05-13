@@ -35,8 +35,10 @@ char keypad_getkey(void)
 			for(j = 0; j < ROW_NO; j++)
 			{
 				if ((GPIO_PORTE_DATA_R & 0x0F) & (1U << (j+1)))
+				{
 					Systick_Wait_ms(10);
 					return keypad_symbols[j][i];
+				}
 			}
 		}
 	}
