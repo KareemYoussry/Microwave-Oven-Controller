@@ -4,8 +4,8 @@
 unsigned char i = 0,j = 0;
 void LCD_Write_Hb(unsigned char data, unsigned char control)
 {
-	data		&=	0xF0;	/* Extract upper nibble for data */
-	control	&=	0x0F;	/* Extract lower nibble for control */
+	data		&=	0xF0;	/* Extract upper 4 Bits for data */
+	control	&=	0x0F;	/* Extract lower 4 Bits for control */
 	GPIO_PORTB_DATA_R	 = data | control;	/* Set RS and R/W bits to zero for write operation */
 	GPIO_PORTB_DATA_R	|= EN;	/* Provide Pulse to Enable pin to perform write operation */
 	Systick_Wait_1us();
@@ -69,7 +69,6 @@ void LCD_Write_Char(unsigned char data)
 		else
 			LCD_Cmd(FirstRow);
 	}
-		
 }
 
 void LCD_String (char *str)
@@ -79,4 +78,21 @@ void LCD_String (char *str)
 	{
 		LCD_Write_Char(str[i]);	/* Call LCD data write for each character */
 	}
+}
+
+void LCD_StringPos(char *str, unsigned char Line, unsigned char Pos)
+{
+	if (Pos < 16)
+	{
+		switch (Line)
+		{
+			case 1:
+				LCD_Cmd((FirstRow | Pos));
+				break;
+			case 2:
+				LCD_Cmd((SecondRow | Pos));
+				break;
+		}
+	}
+	LCD_String(str);
 }
