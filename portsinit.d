@@ -1,1 +1,0 @@
-.\portsinit.o: portsinit.c
