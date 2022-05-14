@@ -450,8 +450,6 @@
               <FileType>1</FileType>
               <FilePath>.\keypad\keypad.c</FilePath>
             </File>
-<<<<<<< Updated upstream
-=======
             <File>
               <FileName>Microwave_Functions.c</FileName>
               <FileType>1</FileType>
@@ -462,7 +460,6 @@
               <FileType>5</FileType>
               <FilePath>.\Microwave_Functions\Microwave_Functions.h</FilePath>
             </File>
->>>>>>> Stashed changes
           </Files>
         </Group>
       </Groups>
