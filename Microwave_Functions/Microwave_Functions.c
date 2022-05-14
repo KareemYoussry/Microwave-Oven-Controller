@@ -2,6 +2,7 @@
 #include "../LCD/LCD.h"
 #include "../keypad/keypad.h"
 #include "Microwave_Functions.h"
+#include "stdlib.h"
 
 void popCorn(void){
 	unsigned char mins[2] = {0, 1},sec[2]={0,0};
@@ -17,7 +18,28 @@ void popCorn(void){
 	
 	LCD_Cmd(clear_display);
 }
-
+void chiken(void){
+	char input=0;
+	LCD_StringPos("chiken weight!",1,0); 
+	
+	do {
+	input =keypad_getkey(); 
+		if (input>'0'&&input<='9')
+			break;  
+		else { 
+			LCD_StringPos("Err", 2, 0);
+			Systick_Wait_ms(2000);
+	}while(1);
+		input -= 48 ;
+	int time;
+	time = input*12; 
+	unsigned char mins[2]={0};
+	unsigned char secs[2]={0}; 
+	itoa(time/60,mins,10);
+	itoa(time%60,secs,10);
+	LCD_CountDown(mins,secs);
+	
+}
 
 //Counter in minutes and seconds (making the count down appear in the LCD)
 //sec[]: 2d-array:{tens of seconds, ones of seconds} as this {5,9} = 59 second

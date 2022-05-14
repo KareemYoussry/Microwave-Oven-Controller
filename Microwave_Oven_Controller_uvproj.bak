@@ -451,14 +451,14 @@
               <FilePath>.\keypad\keypad.c</FilePath>
             </File>
             <File>
-              <FileName>Microwave Functions.c</FileName>
+              <FileName>Microwave_Functions.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Microwave Functions\Microwave Functions.c</FilePath>
+              <FilePath>.\Microwave_Functions\Microwave_Functions.c</FilePath>
             </File>
             <File>
-              <FileName>Microwave Functions.h</FileName>
+              <FileName>Microwave_Functions.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Microwave Functions\Microwave Functions.h</FilePath>
+              <FilePath>.\Microwave_Functions\Microwave_Functions.h</FilePath>
             </File>
           </Files>
         </Group>
