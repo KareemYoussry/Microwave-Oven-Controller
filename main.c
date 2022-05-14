@@ -1,8 +1,7 @@
 #include "tm4c123gh6pm.h"
 #include "./LCD/LCD.h"
 #include "./keypad/keypad.h"
-#include "./Microwave Functions/Microwave Functions.h"
-
+#include "./Microwave_Functions/Microwave_Functions.h"
 
 int main(void)
 {
@@ -21,7 +20,7 @@ int main(void)
 		c = keypad_getkey();
 		LCD_Write_Char(c);
 		Systick_Wait_ms(250);
-			if(c == 65 )
+			if(c == 65)
 				popCorn();
 	}
 
