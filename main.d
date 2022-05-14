@@ -5,3 +5,4 @@
 .\main.o: C:\Keil\ARM\ARMCC\bin\..\include\inttypes.h
 .\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\main.o: ./keypad/keypad.h
+.\main.o: Cooking.h
