@@ -450,6 +450,16 @@
               <FileType>1</FileType>
               <FilePath>.\keypad\keypad.c</FilePath>
             </File>
+            <File>
+              <FileName>Microwave Functions.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Microwave Functions\Microwave Functions.c</FilePath>
+            </File>
+            <File>
+              <FileName>Microwave Functions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Microwave Functions\Microwave Functions.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

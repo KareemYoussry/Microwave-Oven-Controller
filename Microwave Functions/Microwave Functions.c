@@ -1,7 +1,7 @@
 #include "tm4c123gh6pm.h"
-#include "./LCD/LCD.h"
-#include "./keypad/keypad.h"
-#include "Cooking.h"
+#include "../LCD/LCD.h"
+#include "../keypad/keypad.h"
+#include "Microwave Functions.h"
 
 void popCorn(void){
 	unsigned char mins[2] = {0, 2},sec[2]={0,5};

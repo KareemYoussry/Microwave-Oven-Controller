@@ -1,7 +1,7 @@
 #include "tm4c123gh6pm.h"
 #include "./LCD/LCD.h"
 #include "./keypad/keypad.h"
-#include "Cooking.h"
+#include "./Microwave Functions/Microwave Functions.h"
 
 
 int main(void)
