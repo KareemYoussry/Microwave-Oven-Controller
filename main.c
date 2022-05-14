@@ -11,11 +11,7 @@ int main(void)
 	keypad_Init();
 	LCD_String("Enter a Key");
 
-<<<<<<< Updated upstream
 	Systick_Wait_ms(3000);
-=======
-	Systick_Wait_ms(1000);
->>>>>>> Stashed changes
 	LCD_Cmd(clear_display);
 
 	while (1)
@@ -24,12 +20,8 @@ int main(void)
 		c = keypad_getkey();
 		LCD_Write_Char(c);
 		Systick_Wait_ms(250);
-<<<<<<< Updated upstream
 			if(c == 65)
 				popCorn();
-=======
-		if(c == 65)
-			popCorn();
->>>>>>> Stashed changes
 	}
+
 }

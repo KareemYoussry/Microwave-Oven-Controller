@@ -219,11 +219,7 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-<<<<<<< Updated upstream
       <ColumnNumber>18</ColumnNumber>
-=======
-      <ColumnNumber>3</ColumnNumber>
->>>>>>> Stashed changes
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
       <CurrentLine>25</CurrentLine>
@@ -255,17 +251,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-<<<<<<< Updated upstream
       <ColumnNumber>6</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>19</TopLine>
       <CurrentLine>23</CurrentLine>
-=======
-      <ColumnNumber>3</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>19</TopLine>
-      <CurrentLine>31</CurrentLine>
->>>>>>> Stashed changes
       <bDave2>0</bDave2>
       <PathWithFileName>.\LCD\LCD.c</PathWithFileName>
       <FilenameWithoutPath>LCD.c</FilenameWithoutPath>
@@ -344,11 +333,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-<<<<<<< Updated upstream
       <TopLine>4</TopLine>
-=======
-      <TopLine>10</TopLine>
->>>>>>> Stashed changes
       <CurrentLine>40</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\keypad\keypad.c</PathWithFileName>
@@ -362,17 +347,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-<<<<<<< Updated upstream
       <ColumnNumber>9</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
-=======
-      <ColumnNumber>7</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>43</CurrentLine>
->>>>>>> Stashed changes
       <bDave2>0</bDave2>
       <PathWithFileName>.\Microwave_Functions\Microwave_Functions.c</PathWithFileName>
       <FilenameWithoutPath>Microwave_Functions.c</FilenameWithoutPath>
