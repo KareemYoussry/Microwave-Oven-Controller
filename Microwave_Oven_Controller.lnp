@@ -5,7 +5,11 @@
 ".\timer.o"
 ".\keypad.o"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ".\test_conditions.o"
+=======
+".\microwave_functions.o"
+>>>>>>> Stashed changes
 =======
 ".\microwave_functions.o"
 >>>>>>> Stashed changes

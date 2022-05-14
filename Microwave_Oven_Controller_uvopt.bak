@@ -220,6 +220,7 @@
       <tvExp>0</tvExp>
       <Focus>0</Focus>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <ColumnNumber>26</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
@@ -229,6 +230,12 @@
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
       <CurrentLine>4</CurrentLine>
+>>>>>>> Stashed changes
+=======
+      <ColumnNumber>22</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1</TopLine>
+      <CurrentLine>91</CurrentLine>
 >>>>>>> Stashed changes
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
@@ -267,6 +274,7 @@
 <<<<<<< Updated upstream
       <ColumnNumber>6</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
+<<<<<<< Updated upstream
       <TopLine>66</TopLine>
       <CurrentLine>23</CurrentLine>
 =======
@@ -275,6 +283,10 @@
       <TopLine>1</TopLine>
       <CurrentLine>2</CurrentLine>
 >>>>>>> Stashed changes
+>>>>>>> Stashed changes
+=======
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
 >>>>>>> Stashed changes
       <bDave2>0</bDave2>
       <PathWithFileName>.\LCD\LCD.c</PathWithFileName>
@@ -290,8 +302,13 @@
       <Focus>0</Focus>
       <ColumnNumber>6</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
+<<<<<<< Updated upstream
       <TopLine>1</TopLine>
       <CurrentLine>33</CurrentLine>
+=======
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+>>>>>>> Stashed changes
       <bDave2>0</bDave2>
       <PathWithFileName>.\LCD\LCD.h</PathWithFileName>
       <FilenameWithoutPath>LCD.h</FilenameWithoutPath>
@@ -306,8 +323,13 @@
       <Focus>0</Focus>
       <ColumnNumber>21</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
+<<<<<<< Updated upstream
       <TopLine>1</TopLine>
       <CurrentLine>8</CurrentLine>
+=======
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+>>>>>>> Stashed changes
       <bDave2>0</bDave2>
       <PathWithFileName>.\timer\timer.h</PathWithFileName>
       <FilenameWithoutPath>timer.h</FilenameWithoutPath>
@@ -322,8 +344,13 @@
       <Focus>0</Focus>
       <ColumnNumber>3</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
+<<<<<<< Updated upstream
       <TopLine>14</TopLine>
       <CurrentLine>33</CurrentLine>
+=======
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+>>>>>>> Stashed changes
       <bDave2>0</bDave2>
       <PathWithFileName>.\timer\timer.c</PathWithFileName>
       <FilenameWithoutPath>timer.c</FilenameWithoutPath>
@@ -355,6 +382,7 @@
       <ColumnNumber>27</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <TopLine>1</TopLine>
       <CurrentLine>2</CurrentLine>
 =======
@@ -364,6 +392,10 @@
       <TopLine>1</TopLine>
 >>>>>>> Stashed changes
       <CurrentLine>40</CurrentLine>
+>>>>>>> Stashed changes
+=======
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
 >>>>>>> Stashed changes
       <bDave2>0</bDave2>
       <PathWithFileName>.\keypad\keypad.c</PathWithFileName>
@@ -378,6 +410,7 @@
       <tvExp>0</tvExp>
       <Focus>0</Focus>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <ColumnNumber>26</ColumnNumber>
 =======
 <<<<<<< Updated upstream
@@ -387,6 +420,9 @@
       <CurrentLine>35</CurrentLine>
 =======
       <ColumnNumber>9</ColumnNumber>
+=======
+      <ColumnNumber>68</ColumnNumber>
+>>>>>>> Stashed changes
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>26</TopLine>
       <CurrentLine>43</CurrentLine>

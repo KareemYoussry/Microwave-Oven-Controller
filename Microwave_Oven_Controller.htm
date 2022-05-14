@@ -4,6 +4,7 @@
 <body><HR>
 <H1>Static Call Graph for image .\Microwave_Oven_Controller.axf</H1><HR>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sat May 14 16:42:50 2022
 <BR><P>
 <H3>Maximum Stack Usage =         36 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
@@ -11,6 +12,13 @@ Call chain for Maximum Stack Depth:</H3>
 main &rArr; LCD_Init &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 =======
 <BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sat May 14 18:46:25 2022
+<BR><P>
+<H3>Maximum Stack Usage =         84 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+Call chain for Maximum Stack Depth:</H3>
+main &rArr; popCorn &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
+>>>>>>> Stashed changes
+=======
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sat May 14 19:33:06 2022
 <BR><P>
 <H3>Maximum Stack Usage =         84 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -270,7 +278,11 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(.text)
 </UL>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <P><STRONG><a name="[8d]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+=======
+<P><STRONG><a name="[90]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+>>>>>>> Stashed changes
 =======
 <P><STRONG><a name="[90]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 >>>>>>> Stashed changes
@@ -279,6 +291,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <P><STRONG><a name="[8c]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
@@ -294,6 +307,8 @@ Global Symbols
 
 <P><STRONG><a name="[92]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 =======
+=======
+>>>>>>> Stashed changes
 <P><STRONG><a name="[8f]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
@@ -307,6 +322,9 @@ Global Symbols
 <P><STRONG><a name="[94]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
 <P><STRONG><a name="[95]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 <P><STRONG><a name="[78]"></a>Reset_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, startup_tm4c123.o(.text))
@@ -1130,7 +1148,11 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
+<<<<<<< Updated upstream
 <P><STRONG><a name="[80]"></a>SystemInit</STRONG> (Thumb, 126 bytes, Stack size 0 bytes, main.o(.text))
+=======
+<P><STRONG><a name="[80]"></a>SystemInitf</STRONG> (Thumb, 126 bytes, Stack size 0 bytes, main.o(.text))
+>>>>>>> Stashed changes
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1140,6 +1162,7 @@ Global Symbols
 
 <P><STRONG><a name="[7d]"></a>stop_cooking</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, main.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 </UL>
 
@@ -1170,6 +1193,8 @@ Global Symbols
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_blink
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_on
 =======
+=======
+>>>>>>> Stashed changes
 </UL>
 
 <P><STRONG><a name="[86]"></a>leds_on</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(.text))
@@ -1180,15 +1205,25 @@ Global Symbols
 
 <P><STRONG><a name="[7f]"></a>leds_blink</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = leds_blink &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
+<<<<<<< Updated upstream
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
 </UL>
+=======
+</UL>
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+</UL>
+>>>>>>> Stashed changes
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[97]"></a>buzzer_on</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
 
+<<<<<<< Updated upstream
 <P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 152 bytes, Stack size 0 bytes, main.o(.text))
+=======
+<P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, main.o(.text))
+>>>>>>> Stashed changes
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = main &rArr; popCorn &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
@@ -1201,6 +1236,7 @@ Global Symbols
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_blink
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_on
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
@@ -1225,6 +1261,12 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
 =======
+=======
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInitf
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
+</UL>
+>>>>>>> Stashed changes
 <P><STRONG><a name="[88]"></a>LCD_Write_Hb</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
@@ -1247,6 +1289,9 @@ Global Symbols
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_cooking
 </UL>
@@ -1260,6 +1305,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <P><STRONG><a name="[84]"></a>LCD_Write_Char</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = LCD_Write_Char &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
@@ -1285,6 +1331,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait
 =======
+=======
+>>>>>>> Stashed changes
 <P><STRONG><a name="[85]"></a>LCD_Write_Char</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
@@ -1314,6 +1362,7 @@ Global Symbols
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
+<<<<<<< Updated upstream
 </UL>
 
 <P><STRONG><a name="[8d]"></a>SysTick_Wait</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, timer.o(.text))
@@ -1321,15 +1370,28 @@ Global Symbols
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1us
 </UL>
 
+=======
+</UL>
+
+<P><STRONG><a name="[8d]"></a>SysTick_Wait</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, timer.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1ms
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1us
+</UL>
+
+>>>>>>> Stashed changes
 <P><STRONG><a name="[8c]"></a>Systick_Wait_1ms</STRONG> (Thumb, 12 bytes, Stack size 4 bytes, timer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = Systick_Wait_1ms
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
 </UL>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <P><STRONG><a name="[87]"></a>Systick_Wait_1us</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, timer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = Systick_Wait_1us
@@ -1339,6 +1401,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Hb
 =======
+=======
+>>>>>>> Stashed changes
 <P><STRONG><a name="[89]"></a>Systick_Wait_1us</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, timer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = Systick_Wait_1us
 </UL>
@@ -1346,6 +1410,9 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Hb
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 </UL>
 
@@ -1353,9 +1420,17 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Systick_Wait_ms &rArr; Systick_Wait_1ms
 </UL>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
+=======
+<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
+>>>>>>> Stashed changes
 =======
 <BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1ms
 </UL>
@@ -1369,6 +1444,7 @@ Global Symbols
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pause
 </UL>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <P><STRONG><a name="[88]"></a>Systick_Wait_us</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, timer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Systick_Wait_us &rArr; Systick_Wait_1us
@@ -1386,6 +1462,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_getkey
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
 >>>>>>> Stashed changes
+=======
+<P><STRONG><a name="[8a]"></a>Systick_Wait_us</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, timer.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Systick_Wait_us &rArr; Systick_Wait_1us
+</UL>
+<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1us
+</UL>
+<BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_getkey
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
+>>>>>>> Stashed changes
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
 </UL>
 
@@ -1393,6 +1478,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <P><STRONG><a name="[83]"></a>keypad_getkey</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, keypad.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = keypad_getkey &rArr; Systick_Wait_us &rArr; Systick_Wait_1us
@@ -1402,6 +1488,11 @@ Global Symbols
 <P><STRONG><a name="[84]"></a>keypad_getkey</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, keypad.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = keypad_getkey &rArr; Systick_Wait_us &rArr; Systick_Wait_1us
 </UL>
+=======
+<P><STRONG><a name="[84]"></a>keypad_getkey</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, keypad.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = keypad_getkey &rArr; Systick_Wait_us &rArr; Systick_Wait_1us
+</UL>
+>>>>>>> Stashed changes
 <BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
 </UL>
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1425,6 +1516,9 @@ Global Symbols
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 </UL>
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1432,7 +1526,11 @@ Global Symbols
 
 <P><STRONG><a name="[7a]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <BR><BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
+=======
+<BR><BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
+>>>>>>> Stashed changes
 =======
 <BR><BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
 >>>>>>> Stashed changes
@@ -1440,6 +1538,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <P><STRONG><a name="[95]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
@@ -1449,6 +1548,8 @@ Global Symbols
 
 <P><STRONG><a name="[98]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 =======
+=======
+>>>>>>> Stashed changes
 <P><STRONG><a name="[98]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
 <P><STRONG><a name="[99]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
@@ -1456,6 +1557,9 @@ Global Symbols
 <P><STRONG><a name="[9a]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
 <P><STRONG><a name="[9b]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 <P>
 <H3>

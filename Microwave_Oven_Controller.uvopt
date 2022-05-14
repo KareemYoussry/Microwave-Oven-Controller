@@ -183,6 +183,7 @@
       <tvExp>1</tvExp>
       <Focus>0</Focus>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <ColumnNumber>26</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>95</TopLine>
@@ -192,6 +193,12 @@
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>6</TopLine>
       <CurrentLine>27</CurrentLine>
+>>>>>>> Stashed changes
+=======
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>61</TopLine>
+      <CurrentLine>92</CurrentLine>
 >>>>>>> Stashed changes
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
@@ -231,6 +238,9 @@
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       <bDave2>0</bDave2>
       <PathWithFileName>.\LCD\LCD.c</PathWithFileName>
@@ -247,11 +257,16 @@
 <<<<<<< Updated upstream
       <ColumnNumber>6</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
+<<<<<<< Updated upstream
       <TopLine>1</TopLine>
       <CurrentLine>33</CurrentLine>
 =======
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+>>>>>>> Stashed changes
+=======
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
 >>>>>>> Stashed changes
@@ -270,11 +285,16 @@
 <<<<<<< Updated upstream
       <ColumnNumber>21</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
+<<<<<<< Updated upstream
       <TopLine>1</TopLine>
       <CurrentLine>8</CurrentLine>
 =======
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+>>>>>>> Stashed changes
+=======
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
 >>>>>>> Stashed changes
@@ -293,8 +313,13 @@
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <TopLine>14</TopLine>
       <CurrentLine>33</CurrentLine>
+=======
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+>>>>>>> Stashed changes
 =======
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
@@ -330,8 +355,13 @@
       <ColumnNumber>27</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <TopLine>1</TopLine>
       <CurrentLine>2</CurrentLine>
+=======
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+>>>>>>> Stashed changes
 =======
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
