@@ -12,9 +12,10 @@ GPIO_PORTF_CR_R   |=0X01F;
 GPIO_PORTF_AMSEL_R &= ~0X01F;
 GPIO_PORTF_PCTL_R &= ~0X000FFFFF;
 GPIO_PORTF_AFSEL_R   &= ~0X01F;
-GPIO_PORTF_DIR_R |=0X0C;
+GPIO_PORTF_DIR_R |=0X01F;
 GPIO_PORTF_DEN_R  |=0X01F;
-GPIO_PORTF_DATA_R &= ~0X0C;
+GPIO_PORTF_DATA_R &= ~0X1F;
+
 
 }
 
@@ -68,6 +69,14 @@ void leds_blink(){
 void buzzer_on(){
 }
 
+unsigned char button_in;
+
+unsigned char sw2_input(){
+return GPIO_PORTF_DATA_R &0X1;
+
+}
+
+
 
 
 
@@ -89,8 +98,9 @@ int main(void)
 	
 		c = keypad_getkey();
 		LCD_Write_Char(c);
+		button_in= sw2_input();
 
-		if(((GPIO_PORTF_DATA_R & 0X01)==0)){
+		if(button_in==0){
 	
 	
 		//if(((GPIO_PORTF_DATA_R & 0X01)==0)&&((GPIO_PORTF_DATA_R & 0X02)==1)){
