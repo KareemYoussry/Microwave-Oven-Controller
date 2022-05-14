@@ -4,58 +4,66 @@
 #include "string.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include "ctype.h"
+#include "./Microwave_Functions/Microwave_Functions.h"
 
-void checkswitch () {
-	
-}
-void checknum(int *value1, int *value2, int *value3, int *value4, int n){
-	int i;
+
+void checknum(int values [4], int n){
+	int ite;
 	char word[5];
-	strcpy(word, "00:00");
-	for (i=0;i<10;i++){
-		if (*value1 == i){
+	strcpy(word, "00:00"); 
+		if (!((isdigit (values[0]))  // checking if values entered are a number or not
+			&& 	(isdigit (values[1]))
+			&&	(isdigit (values[2]))
+			&&	(isdigit (values[3]))  ))
+				return;
+
 			switch (n){
-				case 1:
-					LCD_Cmd(clear_display);
-					word[4] = *value1 + '0';
-					LCD_String(word);
+				case 0: // first case: first digit is entered
+					word[4] = values[0] + '0';
+					LCD_StringPos(word,2,0);
 					break;	
-				case 2:
-					LCD_Cmd(clear_display);
-					word[4] = *value2 + '0';
-					word[3] = *value1 + '0';
-					LCD_String(word);
+				case 1: // Second case: second digit is entered
+					word[4] = values[1] + '0';
+					word[3] = values[0] + '0';
+					LCD_StringPos(word,2,0);
 					break;
-				case 3:
-					LCD_Cmd(clear_display);
-					word[4] = *value3 + '0';
-					word[3] = *value2 + '0';
-					word[1] = *value1 + '0';
-					LCD_String(word);
+				case 2: // Third case: third digit is entered
+					word[4] = values[2] + '0';
+					word[3] = values[1] + '0';
+					word[1] = values[0] + '0';
+					LCD_StringPos(word,2,0);
 					break;
-				case 4:
-					LCD_Cmd(clear_display);
-					word[4] = *value4 + '0';
-					word[3] = *value3 + '0';
-					word[1] = *value2 + '0';
-					word[0] = *value1 + '0';
-					LCD_String(word);
+				case 3: // Fourth case: fourth digit is entered
+					if (values[0] >=3 && values[1] > 0)
+						LCD_StringPos("Error",2,0);  // checking if the minutes are less than or equal 30 minutes
+					
+					word[4] = values[3] + '0';
+					word[3] = values[2] + '0';
+					word[1] = values[1] + '0';
+					word[0] = values[0] + '0';
+					LCD_StringPos(word,2,0);
 					break;
 		}
 	}
-}
-	}
 
-void D_Key (const char D){
-		int value1 = 0,value2 = 0,value3 = 0,value4 = 0,i;
-		if (!strcmp(D, "D")){
+void D_Key (char D){
+		int values[5],ite; // declaring array to use as time
+		if (!strcmp(D , "D")){  // checking if the key entered is D
 			return;
 		}
-		LCD_String("Cooking Time?");
-		value1 = keypad_getkey() - '0';
-		checknum(&value1,&value2,&value3,&value4,1);
-		
-		
+		LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
+		for (ite = 0 ; ite <4 ; ite++){  // Iterating to get values and print them on LCD
+			values[ite] = keypad_getkey() - '0'; // Get value
+			checknum(&values[ite],ite);
+		}
+		if ((GPIO_PORTF_DATA_R&0x01) != 0x01) 
+			LCD_Cmd(clear_display);
+		if ((GPIO_PORTF_DATA_R&0x10) != 0x10) {
+		unsigned char secs [] = {values[2] + '0',values[3] + '0'}; // declaring array for seconds
+		unsigned char mins [] = {values[0] + '0',values[1] + '0'}; // declaring array for minutes
+		LCD_CountDown (secs,mins);
+	}
 }
 
 int main(void)
