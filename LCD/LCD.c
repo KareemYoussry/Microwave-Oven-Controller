@@ -1,7 +1,7 @@
-#include"LCD.h"
-#include"../timer/timer.h"
+#include "LCD.h"
+#include "../timer/timer.h"
 
-int i = 0;
+unsigned char i = 0,j = 0;
 void LCD_Write_Hb(unsigned char data, unsigned char control)
 {
 	data		&=	0xF0;	/* Extract upper nibble for data */
@@ -22,8 +22,23 @@ void LCD_Cmd(unsigned char command)
 		Systick_Wait_ms(2);		/* 2ms delay for commands 1 and 2 */
 	else
 		Systick_Wait_us(40);	/* 40us delay for other commands */
+	
+	
+	//the comming part for writing on both rows
 	if(command == clear_display)
+		i = 0, j = 0;
+	else if(command == FirstRow)
+	{
+		j = 0;
 		i = 0;
+	}
+	else if(command == SecondRow)
+	{
+		j = 1;
+		i = 0;
+	}
+	else if(command >=SecondRow && command <=SecondRow+15)
+		i = command - SecondRow;
 }
 
 void LCD_Init(void)
@@ -43,7 +58,6 @@ void LCD_Init(void)
 
 void LCD_Write_Char(unsigned char data)
 {
-	static char j = 0;
 	LCD_Write_Hb(data & 0xF0, RS);    /* Write upper nibble to LCD and RS = 1 to write data */
 	LCD_Write_Hb(data << 4, RS);      /* Write lower nibble to LCD and RS = 1 to write data */
 	Systick_Wait_us(40);		/* Delay for the LCD to write the character */
@@ -51,16 +65,9 @@ void LCD_Write_Char(unsigned char data)
 	if(i > 15)
 	{
 		if(j == 0)
-		{
 			LCD_Cmd(SecondRow);
-			j = 1;
-		}
 		else
-		{
 			LCD_Cmd(FirstRow);
-			j = 0;
-		}
-		i = 0;
 	}
 		
 }

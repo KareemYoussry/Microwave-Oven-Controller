@@ -1,6 +1,8 @@
 #include "tm4c123gh6pm.h"
 #include "./LCD/LCD.h"
 #include "./keypad/keypad.h"
+#include "Cooking.h"
+
 
 int main(void)
 {
@@ -8,10 +10,9 @@ int main(void)
 	int i = 0, j = 0;
 	LCD_Init();
 	keypad_Init();
-
-	LCD_Write_Char('X');
-	LCD_String("Hello!");
-
+	LCD_String("tetfa7y eh?");
+		
+	
 	Systick_Wait_ms(1000);
 	LCD_Cmd(clear_display);
 	
@@ -20,10 +21,10 @@ int main(void)
 		i++;
 		c = keypad_getkey();
 		LCD_Write_Char(c);
-		
 		Systick_Wait_ms(250);
-
-		c = 0;
+		if(c == 65)
+			popCorn();
+			
 	}
 
 }
