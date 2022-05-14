@@ -8,28 +8,25 @@
 void checkswitch () {
 	
 }
-void checknum(int *value1,int *value2,int *value3,int *value4, int n){
+void checknum(int *value1, int *value2, int *value3, int *value4, int n){
 	int i;
 	char word[5];
+	strcpy(word, "00:00");
 	for (i=0;i<10;i++){
 		if (*value1 == i){
 			switch (n){
 				case 1:
-					strcpy(word, "00:00");
 					LCD_Cmd(clear_display);
 					word[4] = *value1 + '0';
 					LCD_String(word);
-					break;
-				
+					break;	
 				case 2:
-					strcpy(word, "00:00");
 					LCD_Cmd(clear_display);
 					word[4] = *value2 + '0';
 					word[3] = *value1 + '0';
 					LCD_String(word);
 					break;
 				case 3:
-					strcpy(word, "00:00");
 					LCD_Cmd(clear_display);
 					word[4] = *value3 + '0';
 					word[3] = *value2 + '0';
@@ -37,7 +34,6 @@ void checknum(int *value1,int *value2,int *value3,int *value4, int n){
 					LCD_String(word);
 					break;
 				case 4:
-					strcpy(word, "00:00");
 					LCD_Cmd(clear_display);
 					word[4] = *value4 + '0';
 					word[3] = *value3 + '0';
