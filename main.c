@@ -9,7 +9,6 @@
 
 
 void checknum(int values [4], int n){
-	int ite;
 	char word[5];
 	strcpy(word, "00:00"); 
 		if (!((isdigit (values[0]))  // checking if values entered are a number or not
@@ -48,10 +47,10 @@ void checknum(int values [4], int n){
 	}
 
 void D_Key (char D){
-		int values[5],ite; // declaring array to use as time
-		if (!strcmp(D , "D")){  // checking if the key entered is D
-			return;
-		}
+			int values[5],ite; // declaring array to use as time
+//		if (!strcmp(D , "D")){  // checking if the key entered is D
+//			return;
+//		}
 		LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
 		for (ite = 0 ; ite <4 ; ite++){  // Iterating to get values and print them on LCD
 			values[ite] = keypad_getkey() - '0'; // Get value
@@ -60,16 +59,14 @@ void D_Key (char D){
 		if ((GPIO_PORTF_DATA_R&0x01) != 0x01) 
 			LCD_Cmd(clear_display);
 		if ((GPIO_PORTF_DATA_R&0x10) != 0x10) {
-		unsigned char secs [] = {values[2] + '0',values[3] + '0'}; // declaring array for seconds
-		unsigned char mins [] = {values[0] + '0',values[1] + '0'}; // declaring array for minutes
-		LCD_CountDown (secs,mins);
+			unsigned char secs [2] = {values[2] + '0', values[3] + '0'}; // declaring array for seconds
+			unsigned char mins [2] = {values[0] + '0', values[1] + '0'}; // declaring array for minutes
+			LCD_CountDown (secs,mins);
 	}
 }
 
 int main(void)
-{
-	char string;
-	
+{	
 	LCD_Init();
 	keypad_Init();
 
@@ -83,7 +80,6 @@ int main(void)
 	{
 		D_Key (keypad_getkey());
 		Systick_Wait_ms(250);
-		string = 0;
 	}
 
 }
