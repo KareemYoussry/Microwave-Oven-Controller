@@ -5,8 +5,4 @@
 .\main.o: C:\Keil\ARM\ARMCC\bin\..\include\inttypes.h
 .\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\main.o: ./keypad/keypad.h
-.\main.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
-.\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
-.\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
-.\main.o: C:\Keil\ARM\ARMCC\bin\..\include\ctype.h
 .\main.o: ./Microwave_Functions/Microwave_Functions.h
