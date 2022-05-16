@@ -2,7 +2,7 @@
 #include "../timer/timer.h"
 
 
-void SystemInitf(void);
+void portFinit(void);
 void pause(void);
 void stop_cooking(void);
 void leds_on(void);

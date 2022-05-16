@@ -10,60 +10,50 @@ unsigned char button_in1;
 
 int main(void)
 {
-	char c;
-	SystemInitf();
-	LCD_Init();
-	keypad_Init();
-	
-	LCD_String("Enter a Key");
-	Systick_Wait_ms(3000);
-	LCD_Cmd(clear_display);
+    char c;
+    portFinit();
+    LCD_Init();
+    keypad_Init();
 
-	while (1)
- {
-	
-		c =keypad_getkey();
-		LCD_Write_Char(c);
-		button_in2= sw2_input();
+    LCD_String("Enter ");
+    Systick_Wait_ms(3000);
+    LCD_Cmd(clear_display);
 
-		if(button_in2==0)
+    while (1)
+    {
+        c = keypad_getkey();
+        if(!(c == 'A'|| c == 'B'||c == 'C'||c == 'D'))
+            continue;
+        LCD_Write_Char(c);
+        Systick_Wait_ms(250);
+        do
+        {
+            button_in2 = sw2_input();
+        }while(button_in2);
+ 	if(button_in2==0)
 		{
-	//if(((GPIO_PORTF_DATA_R & 0X01)==0)&&((GPIO_PORTF_DATA_R & 0X02)==1)){
-	          leds_on();
-			      switch(c){
-			                	case 'A':
-									      {
-			                   	        popCorn();
-			                            leds_blink();
-												}
-					              break;
-				                                
-										    case 'B':
-												{
-		                              leds_blink();
-												}
-					              break;
-			                                  
-										    case 'C':
-												{
-		                              leds_blink();
-												} 
-				                break;
-				                          
-											  case 'D':
-												{
-		                              leds_blink();
-											  }
-				                break;
-						         }
-	         
-		       leds_off();
-			
-		}
-	
-	
- }
-	
-}
+				//if((button_in2==0)&&(button_in1==0)){
+				leds_on();
+        switch(c){
+            case 'A':
+                popCorn();
+                leds_blink();
+            break;
 
+            case 'B':
+                leds_blink();
+                break;
+
+            case 'C':
+                leds_blink();
+                break;
+
+            case 'D':
+                leds_blink();
+                break;
+        }
+        leds_off();
+    }
+	}
+}
 //}
