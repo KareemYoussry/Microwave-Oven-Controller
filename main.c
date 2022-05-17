@@ -13,8 +13,8 @@
 int main(void)
 {
     char c;
-	 // portDinit();
-	portEinit();
+	
+	
     portFinit();
     LCD_Init();
     keypad_Init();

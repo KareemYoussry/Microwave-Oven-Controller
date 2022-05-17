@@ -13,18 +13,18 @@ GPIO_PORTF_CR_R |=0X01F;
 GPIO_PORTF_AMSEL_R &= ~0X01F;
 GPIO_PORTF_PCTL_R &= ~0X000FFFFF;
 GPIO_PORTF_AFSEL_R &= ~0X01F;
-GPIO_PORTF_DIR_R |=0X0E;// possible edit
+GPIO_PORTF_DIR_R |=0X0C;// possible edit
 GPIO_PORTF_DEN_R |=0X1F;
-GPIO_PORTF_PUR_R 	|=0X11;
-GPIO_PORTF_DATA_R |= 0X11;//SW1 AND SW2 UNPRESSED SW3 PRESSED (OPEN DOOR)
-GPIO_PORTF_IS_R &= ~0X10;
-GPIO_PORTF_IBE_R &= ~0X10;
-GPIO_PORTF_IEV_R &= ~0X10;
-GPIO_PORTF_ICR_R =0X10;
-GPIO_PORTF_IM_R |=0X10;
+GPIO_PORTF_PUR_R 	|=0X13;
+GPIO_PORTF_DATA_R |= 0X13;//SW1 AND SW2 UNPRESSED SW3 PRESSED (OPEN DOOR)
+GPIO_PORTF_IS_R &= ~0X12;
+GPIO_PORTF_IBE_R &= ~0X12;
+GPIO_PORTF_IEV_R &= ~0X12;
+GPIO_PORTF_ICR_R =0X12;
+GPIO_PORTF_IM_R |=0X12;
 NVIC_PRI7_R=((NVIC_PRI7_R) & (0XFF00FFFF))|0X00A00000;
 NVIC_EN0_R=0X40000000;
-
+//GPIO_PORTF_MIS_R |=0X10;
 }
 
 /*void portDinit(){
@@ -48,7 +48,7 @@ NVIC_PRI0_R=((NVIC_PRI0_R) & (0X00FFFFFF))|0X00A00000;
 NVIC_EN0_R=0X10;*/
 
 //}
-void portEinit(){
+/*void portEinit(){
 SYSCTL_RCGCGPIO_R |=0x10;
 while((SYSCTL_RCGCGPIO_R & 0x10)==0);
 GPIO_PORTE_LOCK_R=0x4C4F434B;
@@ -83,11 +83,11 @@ void GPIOE_Handler()
 
 
 
-}
+}*/
 void  GPIOF_Handler(void) 
 {
-	
-	GPIO_PORTF_ICR_R =0X10;
+if((GPIO_PORTF_MIS_R & 0X10)==0X10){	
+	GPIO_PORTF_ICR_R |=0X10;
 	falling_edges=falling_edges+1;
 if(falling_edges<=2){
 if(falling_edges%2==1){
@@ -103,24 +103,20 @@ LCD_Cmd(clear_display);
 	
 
 }
-	
-}}
 
-
-/*void pause(){
-	int j;
-while(((GPIO_PORTF_DATA_R & 0X10)==0)||((GPIO_PORTF_DATA_R & 0X02)==0)){
-	if(((GPIO_PORTF_DATA_R & 0X01)==0)&&((GPIO_PORTF_DATA_R & 0X02)==1))break;
-	
-	
-	for( j=0;j<6;j++){
-		
-	GPIO_PORTF_DATA_R ^= 0X0C;
+if((GPIO_PORTF_MIS_R & 0X02)==0X02){
+GPIO_PORTF_ICR_R |=0X02;
+do{
+		GPIO_PORTF_DATA_R ^= 0X0C;
 		 Systick_Wait_ms(500);
-		}
-	
+	}while((GPIO_PORTF_DATA_R &0X02)!=1);
+
+
 }
-	}*/
+	
+}}}
+
+
 
 void stop_cooking()
 {
