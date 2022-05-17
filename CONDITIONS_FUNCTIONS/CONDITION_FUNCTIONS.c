@@ -2,6 +2,9 @@
 #include "../timer/timer.h"
 #include "../LCD/LCD.h"
 
+volatile unsigned char falling_edges=0;
+
+
 void portFinit(){
 SYSCTL_RCGCGPIO_R |=0x20;
 while((SYSCTL_RCGCGPIO_R & 0x20)==0);
@@ -10,13 +13,44 @@ GPIO_PORTF_CR_R |=0X01F;
 GPIO_PORTF_AMSEL_R &= ~0X01F;
 GPIO_PORTF_PCTL_R &= ~0X000FFFFF;
 GPIO_PORTF_AFSEL_R &= ~0X01F;
-GPIO_PORTF_DIR_R |=0X0C;
+GPIO_PORTF_DIR_R |=0X0E;// possible edit
 GPIO_PORTF_DEN_R |=0X1F;
 GPIO_PORTF_PUR_R 	|=0X11;
 GPIO_PORTF_DATA_R |= 0X11;//SW1 AND SW2 UNPRESSED SW3 PRESSED (OPEN DOOR)
+GPIO_PORTF_IS_R &= ~0X10;
+GPIO_PORTF_IBE_R &= ~0X10;
+GPIO_PORTF_IEV_R &= ~0X10;
+GPIO_PORTF_ICR_R =0X10;
+GPIO_PORTF_IM_R |=0X10;
+NVIC_PRI7_R=((NVIC_PRI7_R) & (0XFF00FFFF))|0X00A00000;
+NVIC_EN0_R=0X40000000;
+//EnableInterrupts();
 }
 
-void pause(){
+
+void  GPIOF_Handler(void) 
+{
+	
+	GPIO_PORTF_ICR_R =0X10;
+	falling_edges=falling_edges+1;
+
+if(falling_edges%2==1){
+	do{
+		GPIO_PORTF_DATA_R ^= 0X0C;
+		 Systick_Wait_ms(500);
+	}while((GPIO_PORTF_DATA_R &0X1)!=0);
+}
+	if(falling_edges%2==0)
+{
+LCD_Cmd(clear_display);
+	
+
+}
+	
+}
+
+
+/*void pause(){
 	int j;
 while(((GPIO_PORTF_DATA_R & 0X10)==0)||((GPIO_PORTF_DATA_R & 0X02)==0)){
 	if(((GPIO_PORTF_DATA_R & 0X01)==0)&&((GPIO_PORTF_DATA_R & 0X02)==1))break;
@@ -29,7 +63,7 @@ while(((GPIO_PORTF_DATA_R & 0X10)==0)||((GPIO_PORTF_DATA_R & 0X02)==0)){
 		}
 	
 }
-	}
+	}*/
 
 void stop_cooking(){
 	

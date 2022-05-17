@@ -2,12 +2,21 @@
 #include "../LCD/LCD.h"
 #include "../keypad/keypad.h"
 #include "Microwave_Functions.h"
+#include "../CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
+
+unsigned char button_in2;
+unsigned char button_in1;
 
 void popCorn(void){
 	unsigned char mins[2] = {0, 1},sec[2]={0,0};
 	
 	LCD_Cmd(clear_display);
 	LCD_StringPos("Popcorn", 1, 0);
+	do
+        {
+            button_in2 = sw2_input();
+        }while(button_in2);
+				leds_on();
 	LCD_StringPos("Time: ", 2, 0);
 	
 	LCD_CountDown(sec,mins);
@@ -22,6 +31,7 @@ void popCorn(void){
 //Counter in minutes and seconds (making the count down appear in the LCD)
 //sec[]: 2d-array:{tens of seconds, ones of seconds} as this {5,9} = 59 second
 //min[]: 2d-array:{tens of minutes, ones of minutes} as this {1,5} = 15 min
+
 
 void LCD_CountDown(unsigned char sec[],unsigned char min[])
 {

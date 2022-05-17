@@ -12,3 +12,4 @@
 .\microwave_functions.o: C:\Keil\ARM\ARMCC\bin\..\include\inttypes.h
 .\microwave_functions.o: Microwave_Functions\../keypad/keypad.h
 .\microwave_functions.o: Microwave_Functions\Microwave_Functions.h
+.\microwave_functions.o: Microwave_Functions\../CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h

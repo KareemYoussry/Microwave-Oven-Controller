@@ -4,8 +4,8 @@
 #include "./CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
 #include "./Microwave_Functions/Microwave_Functions.h"
 
-unsigned char button_in2;
-unsigned char button_in1;
+//unsigned char button_in2;
+//unsigned char button_in1;
 
 
 int main(void)
@@ -26,14 +26,13 @@ int main(void)
             continue;
         LCD_Write_Char(c);
         Systick_Wait_ms(250);
-        do
+       /* do
         {
             button_in2 = sw2_input();
-        }while(button_in2);
- 	if(button_in2==0)
-		{
+        }while(button_in2);*/
+ 	
 				//if((button_in2==0)&&(button_in1==0)){
-				leds_on();
+				//leds_on();
         switch(c){
             case 'A':
                 popCorn();
@@ -55,5 +54,5 @@ int main(void)
         leds_off();
     }
 	}
-}
+
 //}
