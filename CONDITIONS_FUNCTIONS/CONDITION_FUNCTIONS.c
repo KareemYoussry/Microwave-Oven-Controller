@@ -27,7 +27,42 @@ NVIC_EN0_R=0X40000000;
 
 }
 
+void portDinit(){
+SYSCTL_RCGCGPIO_R |=0x80;
+while((SYSCTL_RCGCGPIO_R & 0x80)==0);
+GPIO_PORTD_LOCK_R=0x4C4F434B;
+GPIO_PORTD_CR_R |=0X03;
+GPIO_PORTD_AMSEL_R &= ~0X03;
+GPIO_PORTD_PCTL_R &= ~0X0FF;
+GPIO_PORTD_AFSEL_R &= ~0X3;
+GPIO_PORTD_DIR_R |=0X02;// 
+GPIO_PORTD_DEN_R |=0X3;
+GPIO_PORTD_PUR_R 	|=0X1;
+GPIO_PORTD_DATA_R |= 0X01;//DOOR CLOSED INITIALLY
+GPIO_PORTD_IS_R &= ~0X01;
+GPIO_PORTD_IBE_R &= ~0X01;
+GPIO_PORTD_IEV_R &= ~0X01;
+GPIO_PORTD_ICR_R =0X01;
+GPIO_PORTD_IM_R |=0X01;
+NVIC_PRI0_R=((NVIC_PRI0_R) & (0X00FFFFFF))|0X20000000;
+NVIC_EN0_R=0X08;
 
+}
+
+
+
+
+void GPIOD_Handler()
+{
+	GPIO_PORTD_ICR_R =0X01;
+	do{
+		GPIO_PORTF_DATA_R ^= 0X0C;
+		 Systick_Wait_ms(500);
+	}while((GPIO_PORTD_DATA_R &0X1)!=1);
+
+
+
+}
 void  GPIOF_Handler(void) 
 {
 	
@@ -42,6 +77,7 @@ if(falling_edges%2==1){
 }
 	if(falling_edges%2==0)
 {
+	
 LCD_Cmd(clear_display);
 	
 
@@ -96,6 +132,7 @@ void leds_blink(){
 
 
 void buzzer_on(){
+	GPIO_PORTD_DATA_R |=0X2;
 }
 
 unsigned char sw1_input(){

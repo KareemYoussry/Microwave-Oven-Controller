@@ -8,11 +8,12 @@
 //unsigned char button_in1;
  
 
-extern volatile unsigned char falling_edges;
+//extern volatile unsigned char falling_edges;
 	
 int main(void)
 {
     char c;
+	portDinit();
     portFinit();
     LCD_Init();
     keypad_Init();
@@ -38,11 +39,6 @@ int main(void)
         switch(c){
             case 'A':
                 popCorn();
-						if(falling_edges==2)
-						{
-							break;
-						
-						}
                 leds_blink();
             break;
 
@@ -61,7 +57,7 @@ int main(void)
         leds_off();
     }
 		
-		 falling_edges=0;
+		// falling_edges=0;
 	}
 
 //}
