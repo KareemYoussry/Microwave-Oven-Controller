@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Microwave_Oven_Controller.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Microwave_Oven_Controller.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 17 16:03:30 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 17 18:03:05 2022
 <BR><P>
 <H3>Maximum Stack Usage =         84 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -23,7 +23,7 @@ Mutually Recursive functions
  <LI><a href="#[a]">GPIOA_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[a]">GPIOA_Handler</a><BR>
  <LI><a href="#[b]">GPIOB_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[b]">GPIOB_Handler</a><BR>
  <LI><a href="#[c]">GPIOC_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[c]">GPIOC_Handler</a><BR>
- <LI><a href="#[e]">GPIOE_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[e]">GPIOE_Handler</a><BR>
+ <LI><a href="#[d]">GPIOD_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[d]">GPIOD_Handler</a><BR>
  <LI><a href="#[f]">UART0_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[f]">UART0_Handler</a><BR>
  <LI><a href="#[10]">UART1_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[10]">UART1_Handler</a><BR>
  <LI><a href="#[11]">SSI0_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[11]">SSI0_Handler</a><BR>
@@ -152,8 +152,8 @@ Function Pointers
  <LI><a href="#[a]">GPIOA_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[b]">GPIOB_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[c]">GPIOC_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
- <LI><a href="#[d]">GPIOD_Handler</a> from condition_functions.o(.text) referenced from startup_tm4c123.o(RESET)
- <LI><a href="#[e]">GPIOE_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
+ <LI><a href="#[d]">GPIOD_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
+ <LI><a href="#[e]">GPIOE_Handler</a> from condition_functions.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[28]">GPIOF_Handler</a> from condition_functions.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[29]">GPIOG_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[2a]">GPIOH_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
@@ -365,10 +365,10 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[e]"></a>GPIOE_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup_tm4c123.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOE_Handler
+<P><STRONG><a name="[d]"></a>GPIOD_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup_tm4c123.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOD_Handler
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOE_Handler
+<BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOD_Handler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
@@ -1090,7 +1090,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = main &rArr; popCorn &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portFinit
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portDinit
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portEinit
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_off
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_blink
@@ -1198,7 +1198,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOF_Handler
-<LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOD_Handler
+<LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOE_Handler
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_blink
@@ -1257,12 +1257,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7b]"></a>portDinit</STRONG> (Thumb, 230 bytes, Stack size 0 bytes, condition_functions.o(.text))
+<P><STRONG><a name="[7b]"></a>portEinit</STRONG> (Thumb, 226 bytes, Stack size 0 bytes, condition_functions.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[d]"></a>GPIOD_Handler</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, condition_functions.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIOD_Handler &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
+<P><STRONG><a name="[e]"></a>GPIOE_Handler</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, condition_functions.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIOE_Handler &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
 </UL>
