@@ -89,7 +89,7 @@ void  GPIOF_Handler(void)
 if((GPIO_PORTF_MIS_R & 0X10)==0X10){	
 	GPIO_PORTF_ICR_R |=0X10;
 	falling_edges=falling_edges+1;
-if(falling_edges<=2){
+//if(falling_edges<=2){
 if(falling_edges%2==1){
 	do{
 		GPIO_PORTF_DATA_R ^= 0X0C;
@@ -104,6 +104,12 @@ LCD_Cmd(clear_display);
 
 }
 
+
+
+
+//}
+	
+}
 if((GPIO_PORTF_MIS_R & 0X02)==0X02){
 GPIO_PORTF_ICR_R |=0X02;
 do{
@@ -111,11 +117,9 @@ do{
 		 Systick_Wait_ms(500);
 	}while((GPIO_PORTF_DATA_R &0X02)!=1);
 
+}
 
 }
-	
-}}}
-
 
 
 void stop_cooking()
