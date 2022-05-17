@@ -58,7 +58,7 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 	}
 }
 
-void checknum(unsigned char values [4], int n){
+void checknum(unsigned char values [], int n){
 	char word[5] = "00:00";
 			switch (n){
 				case 0: // first case: first digit is entered
@@ -77,7 +77,7 @@ void checknum(unsigned char values [4], int n){
 					LCD_StringPos(word,2,0);
 					break;
 				case 3: // Fourth case: fourth digit is entered
-					if (values[0] >=3 && values[1] > 0)
+					if ((values[0] >=3) && (values[1] > 0))
 						LCD_StringPos("Error",2,0);  // checking if the minutes are less than or equal 30 minutes
 					
 					word[4] = values[3];
@@ -90,27 +90,26 @@ void checknum(unsigned char values [4], int n){
 	}
 
 void D_Key (void){
-			unsigned char values[4];
-			int ite; // declaring array to use as time
+			unsigned char values[4]; // declaring array to use for input values
+			int ite; // declaring iteration variable
 		LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
 		for (ite = 0 ; ite <4 ; ite++){  // Iterating to get values and print them on LCD
 			do{
 				values[ite] = keypad_getkey(); // Get value
 			}
 			while (values[ite] >= '0' && values[ite] <= '9');
-				checknum(&values[ite],ite);
+				Systick_Wait_ms(250);
+				checknum(values,ite);
 		}
 		if ((GPIO_PORTF_DATA_R&0x01) != 0x01) 
 			LCD_Cmd(clear_display);
-		if ((GPIO_PORTF_DATA_R&0x10) != 0x10) {
+		else if ((GPIO_PORTF_DATA_R&0x10) != 0x10) {
 			unsigned char secs [2]; // declaring array for seconds
 			unsigned char mins [2]; // declaring array for minutes
-			secs [0] = values[2];
-			secs [1] = values[3];
-			mins [0] = values[0];
-			mins [1] = values[1];
+			mins [0] = values[0]-48;
+			mins [1] = values[1]-48;
+			secs [0] = values[2]-48;
+			secs [1] = values[3]-48;
 			LCD_CountDown (secs,mins);
 	}
-}
-
-	
+}	
