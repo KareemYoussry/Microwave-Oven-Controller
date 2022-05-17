@@ -6,8 +6,10 @@
 
 //unsigned char button_in2;
 //unsigned char button_in1;
+ 
 
-
+extern volatile unsigned char falling_edges;
+	
 int main(void)
 {
     char c;
@@ -36,6 +38,11 @@ int main(void)
         switch(c){
             case 'A':
                 popCorn();
+						if(falling_edges==2)
+						{
+							break;
+						
+						}
                 leds_blink();
             break;
 
@@ -53,6 +60,8 @@ int main(void)
         }
         leds_off();
     }
+		
+		 falling_edges=0;
 	}
 
 //}

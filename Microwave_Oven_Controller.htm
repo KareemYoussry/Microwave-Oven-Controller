@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Microwave_Oven_Controller.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Microwave_Oven_Controller.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 17 10:41:21 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 17 14:29:43 2022
 <BR><P>
 <H3>Maximum Stack Usage =         84 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1094,7 +1094,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 126 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = main &rArr; popCorn &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portFinit
@@ -1263,7 +1263,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[28]"></a>GPIOF_Handler</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, condition_functions.o(.text))
+<P><STRONG><a name="[28]"></a>GPIOF_Handler</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, condition_functions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = GPIOF_Handler &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms

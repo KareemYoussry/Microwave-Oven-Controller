@@ -2,8 +2,8 @@
 #include "../timer/timer.h"
 #include "../LCD/LCD.h"
 
-volatile unsigned char falling_edges=0;
-
+//volatile extern unsigned char falling_edges=0;
+volatile unsigned char falling_edges;
 
 void portFinit(){
 SYSCTL_RCGCGPIO_R |=0x20;
@@ -24,7 +24,7 @@ GPIO_PORTF_ICR_R =0X10;
 GPIO_PORTF_IM_R |=0X10;
 NVIC_PRI7_R=((NVIC_PRI7_R) & (0XFF00FFFF))|0X00A00000;
 NVIC_EN0_R=0X40000000;
-//EnableInterrupts();
+
 }
 
 
@@ -33,7 +33,7 @@ void  GPIOF_Handler(void)
 	
 	GPIO_PORTF_ICR_R =0X10;
 	falling_edges=falling_edges+1;
-
+if(falling_edges<=2){
 if(falling_edges%2==1){
 	do{
 		GPIO_PORTF_DATA_R ^= 0X0C;
@@ -47,7 +47,7 @@ LCD_Cmd(clear_display);
 
 }
 	
-}
+}}
 
 
 /*void pause(){
@@ -65,8 +65,8 @@ while(((GPIO_PORTF_DATA_R & 0X10)==0)||((GPIO_PORTF_DATA_R & 0X02)==0)){
 }
 	}*/
 
-void stop_cooking(){
-	
+void stop_cooking()
+{
 LCD_Cmd(clear_display);
 	
 }
