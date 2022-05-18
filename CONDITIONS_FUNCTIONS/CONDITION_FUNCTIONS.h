@@ -10,5 +10,6 @@ void leds_on(void);
 void leds_off(void);
 void leds_blink(void);
 void buzzer_on(void);
+void buzzer_off(void);
 unsigned char sw1_input(void);
 unsigned char sw2_input(void);

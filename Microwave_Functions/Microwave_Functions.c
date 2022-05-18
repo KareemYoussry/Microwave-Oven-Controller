@@ -4,27 +4,23 @@
 #include "Microwave_Functions.h"
 #include "../CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
 
+extern volatile unsigned char falling_edges;
 unsigned char button_in2;
 unsigned char button_in1;
 
 void popCorn(void){
-	unsigned char mins[2] = {0, 1},sec[2]={0,0};
+	unsigned char mins[2] = {0, 0},sec[2]={5,0};
 	
 	LCD_Cmd(clear_display);
 	LCD_StringPos("Popcorn", 1, 0);
-	do
-        {
-            button_in2 = sw2_input();
-        }while(button_in2);
-				leds_on();
+	do{
+		button_in2 = sw2_input();
+  }while(button_in2);
+	leds_on();
 	LCD_StringPos("Time: ", 2, 0);
-	
 	LCD_CountDown(sec,mins);
 	LCD_Cmd(clear_display);
-	LCD_String("Done!");
-	Systick_Wait_ms(3000);
 	
-	LCD_Cmd(clear_display);
 }
 
 
@@ -39,6 +35,9 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 	for(Mins = min[0]; min[0] <= Mins;sec[1]--)
 	{
 		LCD_Cmd(SecondRow + 6);
+		
+		if (falling_edges > 1)
+			return;
 
 		//displaying time in this format XX:XX
 		LCD_Write_Char(min[0]+48);	//Writes the ASCII form of the minute tens
@@ -46,8 +45,8 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 		LCD_Write_Char(':');
 		LCD_Write_Char(sec[0]+48);	//Writes the ASCII form of the second tens
 		LCD_Write_Char(sec[1]+48);	//Writes the ASCII form of the second ones
-
-		Systick_Wait_ms(1000);  //counting down time each sec
+		
+		Systick_Wait_ms(300);  //counting down time each sec
 
 		//to be a timer
 		if(sec[1] < 1 || sec[1] > 9)
@@ -67,4 +66,3 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 		}
 	}
 }
-	
