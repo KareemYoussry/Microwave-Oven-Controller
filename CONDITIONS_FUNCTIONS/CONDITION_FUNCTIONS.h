@@ -4,6 +4,7 @@
 
 //void portEinit(void);
 void portFinit(void);
+void portEinit(void);
 void pause(void);
 void stop_cooking(void);
 void leds_on(void);
