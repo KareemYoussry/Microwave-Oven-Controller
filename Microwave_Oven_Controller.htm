@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Microwave_Oven_Controller.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Microwave_Oven_Controller.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed May 18 19:40:46 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed May 18 19:48:20 2022
 <BR><P>
 <H3>Maximum Stack Usage =         84 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1253,21 +1253,21 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7b]"></a>portFinit</STRONG> (Thumb, 230 bytes, Stack size 0 bytes, condition_functions.o(.text))
+<P><STRONG><a name="[7e]"></a>portEinit</STRONG> (Thumb, 224 bytes, Stack size 0 bytes, condition_functions.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7e]"></a>portEinit</STRONG> (Thumb, 230 bytes, Stack size 0 bytes, condition_functions.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[e]"></a>GPIOE_Handler</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, condition_functions.o(.text))
+<P><STRONG><a name="[e]"></a>GPIOE_Handler</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, condition_functions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIOE_Handler &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
+<P><STRONG><a name="[7b]"></a>portFinit</STRONG> (Thumb, 234 bytes, Stack size 0 bytes, condition_functions.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
 <P><STRONG><a name="[28]"></a>GPIOF_Handler</STRONG> (Thumb, 174 bytes, Stack size 8 bytes, condition_functions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = GPIOF_Handler &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>

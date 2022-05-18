@@ -2,9 +2,8 @@
 #include "../timer/timer.h"
 //#include "startup_TM4C123.s"
 
-//void portEinit(void);
-void portFinit(void);
 void portEinit(void);
+void portFinit(void);
 void pause(void);
 void stop_cooking(void);
 void leds_on(void);

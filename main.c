@@ -18,11 +18,12 @@ int main(void)
     portFinit();
     LCD_Init();
     keypad_Init();
-    portEinit();
+	portEinit();
+
     LCD_String("Enter ");
     Systick_Wait_ms(3000);
     LCD_Cmd(clear_display);
-    
+
     while (1)
     {
         c = keypad_getkey();
