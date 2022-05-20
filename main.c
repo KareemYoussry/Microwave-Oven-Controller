@@ -12,44 +12,56 @@ extern volatile unsigned char falling_edges;
 	
 int main(void)
 {
+    char c;
 	
-  char c;
 	
-	
-  portFinit();
-  LCD_Init();
-  keypad_Init();
+    portFinit();
+    LCD_Init();
+    keypad_Init();
 	portEinit();
 
-  while (1)
-  {
-		leds_off();
-		LCD_String("Enter:");
-    c = keypad_getkey();
-    if(!(c == 'A'|| c == 'B'||c == 'C'||c == 'D'))
-      continue;
-    LCD_Write_Char(c);
-    Systick_Wait_ms(250);
-    switch(c){
-      case 'A':
-			 popCorn();
-			 break;
+    LCD_String("Enter ");
+    Systick_Wait_ms(3000);
+    LCD_Cmd(clear_display);
 
-      case 'B':
-        break;
+    while (1)
+    {
+        c = keypad_getkey();
+        if(!(c == 'A'|| c == 'B'||c == 'C'||c == 'D'))
+            continue;
+        LCD_Write_Char(c);
+        Systick_Wait_ms(250);
+       /* do
+        {
+            button_in2 = sw2_input();
+        }while(button_in2);*/
+ 	
+				//if((button_in2==0)&&(button_in1==0)){
+				//leds_on();
+        switch(c){
+            case 'A':
+                popCorn();
+                
+            break;
 
-      case 'C':
-        break;
+            case 'B':
+               
+                break;
 
-      case 'D':
-        break;
+            case 'C':
+                
+                break;
+
+            case 'D':
+               
+                break;
+        }
+        leds_off();
+						 
+			falling_edges=0;
+
     }
-			LCD_String("Done!");
-			buzzer_on();
-			leds_blink();
-			buzzer_off();			
-			LCD_Cmd(clear_display);
-  }
-	
-	
-}
+		
+	}
+
+//}
