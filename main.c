@@ -33,8 +33,8 @@ void popCorn(void){
 	LCD_Cmd(clear_display);
 	LCD_String("Done!");
 	leds_blink();
-	buzzer_on();
-	Systick_Wait_ms(3000);
+	//buzzer_on();
+	//Systick_Wait_ms(3000);
 	
 	LCD_Cmd(clear_display);
 	
@@ -115,14 +115,16 @@ void checknum(unsigned char values [4], int n){
 					LCD_StringPos(word,2,0);
 					break;
 		}
+	
 	}
+
 
 void D_Key (void){
 	unsigned char secs [2]; // declaring array for seconds
 	unsigned char mins [2]; // declaring array for minutes
 			unsigned char values[4];
 			int ite; // declaring array to use as time
-	    falling_edges=1;
+	   Flag_D=1;
 		LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
 		for (ite = 0 ; ite <4 ; ite++){  // Iterating to get values and print them on LCD
 			do{
@@ -140,7 +142,7 @@ void D_Key (void){
 			secs [1] = values[3];
 			mins [0] = values[0];
 			mins [1] = values[1];
-      falling_edges=0;
+     Flag_D=0;
 			LCD_CountDown (secs,mins);
 		  LCD_Cmd(clear_display);
 	  
@@ -237,6 +239,13 @@ void  GPIOF_Handler(void)
 	
 	falling_edges=falling_edges+1;
 	
+	
+	if(Flag_D==1)
+	{
+	falling_edges=0;
+	LCD_Cmd(clear_display);
+	}
+	
 	if(Flag_A==1)
 	{
 		falling_edges=0;
@@ -251,10 +260,10 @@ if(falling_edges==1)
 		{falling_edges=0;}
   }
 	
-	/*if(falling_edges==2)
+	if(falling_edges==2)
 	{
 	LCD_Cmd(clear_display);
-	}*/
+	}
 	
 	
 }
