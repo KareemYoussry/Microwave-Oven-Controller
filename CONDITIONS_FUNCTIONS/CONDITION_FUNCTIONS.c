@@ -4,6 +4,10 @@
 
 //volatile extern unsigned char falling_edges=0;
 volatile unsigned char falling_edges;
+extern volatile unsigned char Flag_A;
+extern volatile unsigned char Flag_B;
+extern volatile unsigned char Flag_C;
+extern volatile unsigned char Flag_D;
 
 void portEinit(){
 SYSCTL_RCGCGPIO_R |=0x10;
@@ -82,16 +86,25 @@ NVIC_EN0_R=0X10;
 
 void  GPIOF_Handler(void) 
 {
-	GPIO_PORTF_ICR_R =0X10;
+	GPIO_PORTF_ICR_R |=0X10;
+	
 	falling_edges=falling_edges+1;
 	
-if(falling_edges%2==1)
+	if(Flag_A==1)
+	{
+		falling_edges=0;
+	}
+	
+	
+	
+if(falling_edges==1)
 	{
 	pause();
-	falling_edges=0;
+	if(falling_edges!=2)
+		{falling_edges=0;}
   }
 	
-	if(falling_edges%2==0)
+	if(falling_edges==2)
 	{
 	LCD_Cmd(clear_display);
 	}
@@ -105,7 +118,13 @@ void pause(){
 do{
 		GPIO_PORTF_DATA_R ^= 0X0E;
 		 Systick_Wait_ms(500);
-	}while((GPIO_PORTF_DATA_R &0X1)!=0);
+	if(sw1_input()==0)
+		{
+	     falling_edges=2;
+	     break;
+		}
+	
+	}while((sw2_input())!=0);
     
 }
 
@@ -142,6 +161,8 @@ void leds_blink(){
 
 void buzzer_on(){
 	GPIO_PORTE_DATA_R |=0X2;
+	Systick_Wait_ms(3000);
+	GPIO_PORTE_DATA_R &=~0X2;
 }
 
 void buzzer_off(){

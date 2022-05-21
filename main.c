@@ -9,6 +9,10 @@
  
 
 extern volatile unsigned char falling_edges;
+extern volatile unsigned char Flag_A;
+extern volatile unsigned char Flag_B;
+extern volatile unsigned char Flag_C;
+extern volatile unsigned char Flag_D;
 	
 int main(void)
 {
@@ -53,8 +57,9 @@ int main(void)
                 break;
 
             case 'D':
+							         D_Key();
                
-                break;
+                       break;
         }
         leds_off();
 						 

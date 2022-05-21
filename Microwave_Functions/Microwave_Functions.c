@@ -7,9 +7,14 @@
 unsigned char button_in2;
 unsigned char button_in1;
 extern volatile unsigned char falling_edges;
+volatile unsigned char Flag_A=0;
+volatile unsigned char Flag_B=0;
+volatile unsigned char Flag_C=0;
+volatile unsigned char Flag_D=0;
 
 void popCorn(void){
 	unsigned char mins[2] = {0, 1},sec[2]={0,0};
+	Flag_A=1;
 	
 	LCD_Cmd(clear_display);
 	LCD_StringPos("Popcorn", 1, 0);
@@ -19,14 +24,18 @@ void popCorn(void){
         }while(button_in2);
 				leds_on();
 	LCD_StringPos("Time: ", 2, 0);
-	
+	Flag_A=0;
 	LCD_CountDown(sec,mins);
+	Flag_A=1;			
 	LCD_Cmd(clear_display);
 	LCD_String("Done!");
 	leds_blink();
+	buzzer_on();
 	Systick_Wait_ms(3000);
 	
 	LCD_Cmd(clear_display);
+	
+  Flag_A=0;
 }
 
 
@@ -36,13 +45,14 @@ void popCorn(void){
 
 
 void LCD_CountDown(unsigned char sec[],unsigned char min[])
-{
+{ 
 	unsigned char Mins = min[0];
+	
 	for(Mins = min[0]; min[0] <= Mins;sec[1]--)
 	{
 		LCD_Cmd(SecondRow + 6);
 		
-		if (falling_edges %2== 0)
+		if (falling_edges == 2)
 			return;
 
 		//displaying time in this format XX:XX
@@ -72,4 +82,75 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 		}
 	}
 }
+
+void checknum(unsigned char values [4], int n){
+	char word[5] = "00:00";
+			switch (n){
+				case 0: // first case: first digit is entered
+					word[4] = values[0];
+					LCD_StringPos(word,2,0);
+					break;	
+				case 1: // Second case: second digit is entered
+					word[4] = values[1];
+					word[3] = values[0];
+					LCD_StringPos(word,2,0);
+					break;
+				case 2: // Third case: third digit is entered
+					word[4] = values[2];
+					word[3] = values[1];
+					word[1] = values[0];
+					LCD_StringPos(word,2,0);
+					break;
+				case 3: // Fourth case: fourth digit is entered
+					if (values[0] >=3 && values[1] > 0)
+						LCD_StringPos("Error",2,0);  // checking if the minutes are less than or equal 30 minutes
+					
+					word[4] = values[3];
+					word[3] = values[2];
+					word[1] = values[1];
+					word[0] = values[0];
+					LCD_StringPos(word,2,0);
+					break;
+		}
+	}
+
+void D_Key (void){
+	unsigned char secs [2]; // declaring array for seconds
+	unsigned char mins [2]; // declaring array for minutes
+			unsigned char values[4];
+			int ite; // declaring array to use as time
+	    falling_edges=1;
+		LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
+		for (ite = 0 ; ite <4 ; ite++){  // Iterating to get values and print them on LCD
+			do{
+				values[ite] = keypad_getkey(); // Get value
+			}
+			while (values[ite] >= '0' && values[ite] <= '9');
+				checknum(&values[ite],ite);
+		}
+	//	if ((GPIO_PORTF_DATA_R&0x01) != 0x01) 
+		//	LCD_Cmd(clear_display);
+	//	if ((GPIO_PORTF_DATA_R&0x10) != 0x10) {
+		//	unsigned char secs [2]; // declaring array for seconds
+			//unsigned char mins [2]; // declaring array for minutes
+			secs [0] = values[2];
+			secs [1] = values[3];
+			mins [0] = values[0];
+			mins [1] = values[1];
+      falling_edges=0;
+			LCD_CountDown (secs,mins);
+		  LCD_Cmd(clear_display);
+	  
+	   leds_blink();
+	   buzzer_on();
+	   LCD_String("Done!");
+		
+		 Systick_Wait_ms(3000);
+	
+	   LCD_Cmd(clear_display);
+	
+	//}
+}
+
+
 	
