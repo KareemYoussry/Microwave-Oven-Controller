@@ -55,7 +55,7 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 	{
 		LCD_Cmd(SecondRow + 6);
 		
-		if (falling_edges == 2)
+		if (falling_edges == 3)
 			return;
 
 		//displaying time in this format XX:XX
@@ -247,14 +247,14 @@ void  GPIOF_Handler(void)
 if(falling_edges==1)
 	{
 	pause();
-	if(falling_edges!=2)
+	if(falling_edges ==1)
 		{falling_edges=0;}
   }
 	
-	if(falling_edges==2)
+	/*if(falling_edges==2)
 	{
 	LCD_Cmd(clear_display);
-	}
+	}*/
 	
 	
 }
@@ -266,9 +266,10 @@ do{
 		GPIO_PORTF_DATA_R ^= 0X0E;
 		 Systick_Wait_ms(500);
 	if(sw1_input()==0)
-		{
-	     falling_edges=2;
+		{  
+			falling_edges = 2;
 	     break;
+	   
 		}
 	
 	}while((sw2_input())!=0);
