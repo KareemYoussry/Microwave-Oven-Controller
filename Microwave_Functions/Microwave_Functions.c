@@ -4,7 +4,7 @@
 #include "Microwave_Functions.h"
 #include "../CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
 
-extern volatile unsigned char falling_edges;
+extern unsigned char *falling_edges;
 unsigned char button_in2;
 unsigned char button_in1;
 
@@ -36,7 +36,7 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 	{
 		LCD_Cmd(SecondRow + 6);
 		
-		if (falling_edges > 1)
+		if (*falling_edges == 2)
 			return;
 
 		//displaying time in this format XX:XX

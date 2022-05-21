@@ -8,7 +8,6 @@
 //unsigned char button_in1;
  
 
-extern volatile unsigned char falling_edges;
 	
 int main(void)
 {

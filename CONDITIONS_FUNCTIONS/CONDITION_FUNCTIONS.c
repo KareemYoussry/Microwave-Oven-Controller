@@ -3,7 +3,7 @@
 #include "../LCD/LCD.h"
 
 //volatile extern unsigned char falling_edges=0;
-volatile unsigned char falling_edges;
+ unsigned char *falling_edges;
 
 void portEinit(){
 	SYSCTL_RCGCGPIO_R |=0x10;
@@ -126,10 +126,29 @@ void GPIOE_Handler()
 }*/
 void  GPIOF_Handler(void) 
 {
+	int z = 0;
 	if((GPIO_PORTF_MIS_R & 0X10)==0X10){	
 		GPIO_PORTF_ICR_R |=0X10;
-		falling_edges=falling_edges+1;
-		if(falling_edges%2==1){
+		GPIO_PORTF_DATA_R ^= 0X0C;
+		Systick_Wait_ms(200);
+		do{
+			z++;
+			Systick_Wait_ms(1);
+			if(z>=500){
+				GPIO_PORTF_DATA_R ^= 0X0C;
+				z = 0;
+			}
+		}while((GPIO_PORTF_DATA_R &0X1)!=0 && (GPIO_PORTF_DATA_R &0X10) != 0);
+		if((GPIO_PORTF_DATA_R &0X1)==0){
+			*falling_edges = 2;
+			return;
+		}
+		else if((GPIO_PORTF_DATA_R &0X10) == 0)
+			*falling_edges = 0;
+	}
+	GPIO_PORTF_DATA_R &= ~0X0C;
+
+/*		if(falling_edges%2==1){
 			do{
 				GPIO_PORTF_DATA_R ^= 0X0C;
 				Systick_Wait_ms(500);
@@ -145,7 +164,7 @@ void  GPIOF_Handler(void)
 			GPIO_PORTF_DATA_R ^= 0X0C;
 			 Systick_Wait_ms(500);
 		}while((GPIO_PORTF_DATA_R &0X02)!=1);
-	}
+	}*/
 }
 
 
