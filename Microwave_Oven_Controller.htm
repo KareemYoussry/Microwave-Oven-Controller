@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Microwave_Oven_Controller.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Microwave_Oven_Controller.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sat May 21 14:40:05 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sat May 21 15:16:30 2022
 <BR><P>
 <H3>Maximum Stack Usage =        116 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -153,8 +153,8 @@ Function Pointers
  <LI><a href="#[b]">GPIOB_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[c]">GPIOC_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[d]">GPIOD_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
- <LI><a href="#[e]">GPIOE_Handler</a> from condition_functions.o(.text) referenced from startup_tm4c123.o(RESET)
- <LI><a href="#[28]">GPIOF_Handler</a> from condition_functions.o(.text) referenced from startup_tm4c123.o(RESET)
+ <LI><a href="#[e]">GPIOE_Handler</a> from main.o(.text) referenced from startup_tm4c123.o(RESET)
+ <LI><a href="#[28]">GPIOF_Handler</a> from main.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[29]">GPIOG_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[2a]">GPIOH_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[3d]">GPIOJ_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
@@ -1086,280 +1086,280 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 124 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = main &rArr; D_Key &rArr; checknum &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
+<P><STRONG><a name="[7b]"></a>buzzer_on</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = buzzer_on &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portFinit
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portEinit
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
-<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_off
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_getkey
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_Init
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
-</UL>
-<P><STRONG><a name="[87]"></a>LCD_Write_Hb</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = LCD_Write_Hb &rArr; Systick_Wait_1us
-</UL>
-<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1us
-</UL>
-<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
 </UL>
 
-<P><STRONG><a name="[81]"></a>LCD_Cmd</STRONG> (Thumb, 110 bytes, Stack size 8 bytes, lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
+<P><STRONG><a name="[7d]"></a>leds_blink</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = leds_blink &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
 </UL>
-<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Hb
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_cooking
-<LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOF_Handler
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
 </UL>
 
-<P><STRONG><a name="[7c]"></a>LCD_Init</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = LCD_Init &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
-</UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
-</UL>
-<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[83]"></a>LCD_Write_Char</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
-</UL>
-<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Hb
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
-</UL>
-<BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[7f]"></a>LCD_String</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
-</UL>
-<BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
-</UL>
-<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[8a]"></a>LCD_StringPos</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, lcd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
-</UL>
-<BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
-</UL>
-<BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checknum
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
-</UL>
-
-<P><STRONG><a name="[8c]"></a>SysTick_Wait</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, timer.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1ms
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1us
-</UL>
-
-<P><STRONG><a name="[8b]"></a>Systick_Wait_1ms</STRONG> (Thumb, 12 bytes, Stack size 4 bytes, timer.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = Systick_Wait_1ms
-</UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait
-</UL>
-<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
-</UL>
-
-<P><STRONG><a name="[88]"></a>Systick_Wait_1us</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, timer.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = Systick_Wait_1us
-</UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait
-</UL>
-<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Hb
-</UL>
-
-<P><STRONG><a name="[80]"></a>Systick_Wait_ms</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, timer.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Systick_Wait_ms &rArr; Systick_Wait_1ms
-</UL>
-<BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1ms
-</UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pause
-<LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOE_Handler
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_blink
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_on
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[89]"></a>Systick_Wait_us</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, timer.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Systick_Wait_us &rArr; Systick_Wait_1us
-</UL>
-<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1us
-</UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_getkey
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
-</UL>
-
-<P><STRONG><a name="[7d]"></a>keypad_Init</STRONG> (Thumb, 118 bytes, Stack size 0 bytes, keypad.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[82]"></a>keypad_getkey</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, keypad.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = keypad_getkey &rArr; Systick_Wait_us &rArr; Systick_Wait_1us
-</UL>
-<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
-</UL>
-<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[8d]"></a>LCD_CountDown</STRONG> (Thumb, 152 bytes, Stack size 16 bytes, microwave_functions.o(.text))
+<P><STRONG><a name="[7e]"></a>LCD_CountDown</STRONG> (Thumb, 152 bytes, Stack size 16 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = LCD_CountDown &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
 </UL>
 
-<P><STRONG><a name="[84]"></a>popCorn</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, microwave_functions.o(.text))
+<P><STRONG><a name="[84]"></a>leds_on</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
+</UL>
+
+<P><STRONG><a name="[83]"></a>sw2_input</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pause
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
+</UL>
+
+<P><STRONG><a name="[81]"></a>popCorn</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = popCorn &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw2_input
-<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_on
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_blink
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_on
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw2_input
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_on
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_blink
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_on
 </UL>
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[92]"></a>checknum</STRONG> (Thumb, 164 bytes, Stack size 24 bytes, microwave_functions.o(.text))
+<P><STRONG><a name="[86]"></a>checknum</STRONG> (Thumb, 164 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = checknum &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
+<BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
 </UL>
-<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
 </UL>
 
-<P><STRONG><a name="[85]"></a>D_Key</STRONG> (Thumb, 146 bytes, Stack size 24 bytes, microwave_functions.o(.text))
+<P><STRONG><a name="[87]"></a>D_Key</STRONG> (Thumb, 146 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = D_Key &rArr; checknum &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_blink
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_on
-<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checknum
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_getkey
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_getkey
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checknum
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_blink
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_on
 </UL>
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7e]"></a>portEinit</STRONG> (Thumb, 224 bytes, Stack size 0 bytes, condition_functions.o(.text))
+<P><STRONG><a name="[8f]"></a>portEinit</STRONG> (Thumb, 228 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[e]"></a>GPIOE_Handler</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, condition_functions.o(.text))
+<P><STRONG><a name="[e]"></a>GPIOE_Handler</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIOE_Handler &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[7b]"></a>portFinit</STRONG> (Thumb, 234 bytes, Stack size 0 bytes, condition_functions.o(.text))
+<P><STRONG><a name="[8c]"></a>portFinit</STRONG> (Thumb, 356 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[94]"></a>sw1_input</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, condition_functions.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pause
+<P><STRONG><a name="[8a]"></a>sw1_input</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pause
 </UL>
 
-<P><STRONG><a name="[8e]"></a>sw2_input</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, condition_functions.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pause
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
-</UL>
-
-<P><STRONG><a name="[93]"></a>pause</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, condition_functions.o(.text))
+<P><STRONG><a name="[89]"></a>pause</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = pause &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
 </UL>
-<BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw1_input
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw2_input
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw1_input
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw2_input
 </UL>
 <BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOF_Handler
 </UL>
 
-<P><STRONG><a name="[28]"></a>GPIOF_Handler</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, condition_functions.o(.text))
+<P><STRONG><a name="[28]"></a>GPIOF_Handler</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = GPIOF_Handler &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pause
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pause
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[95]"></a>stop_cooking</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, condition_functions.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<P><STRONG><a name="[8b]"></a>stop_cooking</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, main.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
 </UL>
 
-<P><STRONG><a name="[8f]"></a>leds_on</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, condition_functions.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
-</UL>
-
-<P><STRONG><a name="[86]"></a>leds_off</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, condition_functions.o(.text))
+<P><STRONG><a name="[90]"></a>leds_off</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[90]"></a>leds_blink</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, condition_functions.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = leds_blink &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
+<P><STRONG><a name="[9d]"></a>buzzer_off</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
+
+<P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 124 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = main &rArr; D_Key &rArr; checknum &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_getkey
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_Init
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_off
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portFinit
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portEinit
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
 </UL>
-<BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
+</UL>
+<P><STRONG><a name="[91]"></a>LCD_Write_Hb</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, lcd.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = LCD_Write_Hb &rArr; Systick_Wait_1us
+</UL>
+<BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1us
+</UL>
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
 </UL>
 
-<P><STRONG><a name="[91]"></a>buzzer_on</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, condition_functions.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = buzzer_on &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
+<P><STRONG><a name="[7f]"></a>LCD_Cmd</STRONG> (Thumb, 110 bytes, Stack size 8 bytes, lcd.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Hb
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_cooking
+<LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOF_Handler
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
 </UL>
 
-<P><STRONG><a name="[9d]"></a>buzzer_off</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, condition_functions.o(.text), UNUSED)
+<P><STRONG><a name="[8d]"></a>LCD_Init</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, lcd.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = LCD_Init &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
+</UL>
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[80]"></a>LCD_Write_Char</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, lcd.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
+</UL>
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Hb
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
+</UL>
+
+<P><STRONG><a name="[85]"></a>LCD_String</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, lcd.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
+</UL>
+<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
+</UL>
+<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
+</UL>
+
+<P><STRONG><a name="[82]"></a>LCD_StringPos</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, lcd.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
+</UL>
+<BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checknum
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
+</UL>
+
+<P><STRONG><a name="[95]"></a>SysTick_Wait</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, timer.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1ms
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1us
+</UL>
+
+<P><STRONG><a name="[94]"></a>Systick_Wait_1ms</STRONG> (Thumb, 12 bytes, Stack size 4 bytes, timer.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = Systick_Wait_1ms
+</UL>
+<BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
+</UL>
+
+<P><STRONG><a name="[92]"></a>Systick_Wait_1us</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, timer.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = Systick_Wait_1us
+</UL>
+<BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait
+</UL>
+<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Hb
+</UL>
+
+<P><STRONG><a name="[7c]"></a>Systick_Wait_ms</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, timer.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Systick_Wait_ms &rArr; Systick_Wait_1ms
+</UL>
+<BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pause
+<LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOE_Handler
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;leds_blink
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_on
+</UL>
+
+<P><STRONG><a name="[93]"></a>Systick_Wait_us</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, timer.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Systick_Wait_us &rArr; Systick_Wait_1us
+</UL>
+<BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1us
+</UL>
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_getkey
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
+</UL>
+
+<P><STRONG><a name="[8e]"></a>keypad_Init</STRONG> (Thumb, 118 bytes, Stack size 0 bytes, keypad.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[88]"></a>keypad_getkey</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, keypad.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = keypad_getkey &rArr; Systick_Wait_us &rArr; Systick_Wait_1us
+</UL>
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
+</UL>
+<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
+</UL>
 
 <P><STRONG><a name="[7a]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload

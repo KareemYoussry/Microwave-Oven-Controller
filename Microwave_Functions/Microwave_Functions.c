@@ -4,9 +4,9 @@
 #include "Microwave_Functions.h"
 #include "../CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
 
-unsigned char button_in2;
-unsigned char button_in1;
-extern volatile unsigned char falling_edges;
+//unsigned char button_in2;
+//unsigned char button_in1;
+/*extern volatile unsigned char falling_edges;
 volatile unsigned char Flag_A=0;
 volatile unsigned char Flag_B=0;
 volatile unsigned char Flag_C=0;
@@ -151,6 +151,6 @@ void D_Key (void){
 	
 	//}
 }
-
+*/
 
 	

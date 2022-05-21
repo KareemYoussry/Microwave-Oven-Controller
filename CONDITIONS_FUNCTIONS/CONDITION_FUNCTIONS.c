@@ -3,7 +3,7 @@
 #include "../LCD/LCD.h"
 
 //volatile extern unsigned char falling_edges=0;
-volatile unsigned char falling_edges;
+/*volatile unsigned char falling_edges;
 extern volatile unsigned char Flag_A;
 extern volatile unsigned char Flag_B;
 extern volatile unsigned char Flag_C;
@@ -62,7 +62,7 @@ NVIC_PRI7_R=((NVIC_PRI7_R) & (0XFF00FFFF))|0X00A00000;
 NVIC_EN0_R=0X40000000;
 }
 
-/*void portDinit(){
+void portDinit(){
 SYSCTL_RCGCGPIO_R |=0x8;
 while((SYSCTL_RCGCGPIO_R & 0x8)==0);
 GPIO_PORTD_LOCK_R=0x4C4F434B;
@@ -84,7 +84,7 @@ NVIC_EN0_R=0X10;
 }*/
 
 
-void  GPIOF_Handler(void) 
+/*void  GPIOF_Handler(void) 
 {
 	GPIO_PORTF_ICR_R |=0X10;
 	
@@ -178,7 +178,7 @@ unsigned char sw2_input(){
 return GPIO_PORTF_DATA_R &0X1;
 }
 
-
+*/
 
 
 
