@@ -273,7 +273,8 @@ void pause(){
 	
 do{
 		GPIO_PORTF_DATA_R ^= 0X0E;
-		 Systick_Wait_ms(500);
+		 Systick_Wait_ms(50);
+	
 	if(sw1_input()==0)
 		{  
 			falling_edges = 2;
