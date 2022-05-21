@@ -2,13 +2,11 @@
 #include "../timer/timer.h"
 #include "../LCD/LCD.h"
 
-//volatile extern unsigned char falling_edges=0;
- unsigned char *falling_edges;
+unsigned char *falling_edges;
 
 void portEinit(){
 	SYSCTL_RCGCGPIO_R |=0x10;
 	while((SYSCTL_RCGCGPIO_R & 0x10)==0);
-	//GPIO_PORTE_LOCK_R=0x4C4F434B;
 	GPIO_PORTE_CR_R |=0X30;
 	GPIO_PORTE_AMSEL_R &= ~0X30;
 	GPIO_PORTE_PCTL_R &= ~0XFF0000;
@@ -67,104 +65,40 @@ void portFinit(){
 	//GPIO_PORTF_MIS_R |=0X10;
 }
 
-/*void portDinit(){
-SYSCTL_RCGCGPIO_R |=0x8;
-while((SYSCTL_RCGCGPIO_R & 0x8)==0);
-GPIO_PORTD_LOCK_R=0x4C4F434B;
-GPIO_PORTE_CR_R |=0X03;
-GPIO_PORTE_AMSEL_R &= ~0X03;
-GPIO_PORTE_PCTL_R &= ~0X0FF;
-GPIO_PORTE_AFSEL_R &= ~0X3;
-GPIO_PORTE_DIR_R |=0X02;// 
-GPIO_PORTE_DEN_R |=0X3;
-GPIO_PORTE_PUR_R 	|=0X1;
-GPIO_PORTE_DATA_R |= 0X01;//DOOR CLOSED INITIALLY
-GPIO_PORTE_IS_R &= ~0X01;
-GPIO_PORTE_IBE_R &= ~0X01;
-GPIO_PORTE_IEV_R &= ~0X01;
-GPIO_PORTE_ICR_R =0X01;
-GPIO_PORTE_IM_R |=0X01;
-NVIC_PRI0_R=((NVIC_PRI0_R) & (0X00FFFFFF))|0X00A00000;
-NVIC_EN0_R=0X10;*/
-
-//}
-/*void portEinit(){
-SYSCTL_RCGCGPIO_R |=0x10;
-while((SYSCTL_RCGCGPIO_R & 0x10)==0);
-GPIO_PORTE_LOCK_R=0x4C4F434B;
-GPIO_PORTE_CR_R |=0X30;
-GPIO_PORTE_AMSEL_R &= ~0X30;
-GPIO_PORTE_PCTL_R &= ~0XFF0000;
-GPIO_PORTE_AFSEL_R &= ~0X30;
-GPIO_PORTE_DIR_R |=0X20;// 
-GPIO_PORTE_DEN_R |=0X30;
-GPIO_PORTE_PUR_R 	|=0X10;
-GPIO_PORTE_DATA_R |= 0X10;//DOOR CLOSED INITIALLY
-GPIO_PORTE_IS_R &= ~0X10;
-GPIO_PORTE_IBE_R &= ~0X10;
-GPIO_PORTE_IEV_R &= ~0X10;
-GPIO_PORTE_ICR_R =0X10;
-GPIO_PORTE_IM_R |=0X10;
-NVIC_PRI1_R |=0X40;
-NVIC_EN0_R=0X10;
-
-}
-
-
-
-
-void GPIOE_Handler()
+void  GPIOF_Handler() 
 {
-	GPIO_PORTD_ICR_R =0X10;
-	do{
-		GPIO_PORTF_DATA_R ^= 0X0C;
-		 Systick_Wait_ms(500);
-	}while((GPIO_PORTE_DATA_R &0X10)!=1);
-
-
-
-}*/
-void  GPIOF_Handler(void) 
-{
-	int z = 0;
 	if((GPIO_PORTF_MIS_R & 0X10)==0X10){	
+		int z = 0;
 		GPIO_PORTF_ICR_R |=0X10;
 		GPIO_PORTF_DATA_R ^= 0X0C;
+		*falling_edges+=48;
+		LCD_StringPos(falling_edges,1,1);
+					*falling_edges+=48;
+
+		if(*falling_edges > 2){
+			GPIO_PORTF_DATA_R &= ~0X0C;
+			return;
+		}
+		*falling_edges = 1;
 		Systick_Wait_ms(200);
 		do{
 			z++;
-			Systick_Wait_ms(1);
+			Systick_Wait_1ms();
 			if(z>=500){
 				GPIO_PORTF_DATA_R ^= 0X0C;
 				z = 0;
 			}
 		}while((GPIO_PORTF_DATA_R &0X1)!=0 && (GPIO_PORTF_DATA_R &0X10) != 0);
 		if((GPIO_PORTF_DATA_R &0X1)==0){
-			*falling_edges = 2;
+			(*falling_edges)++;
+			GPIO_PORTF_DATA_R &= ~0X0C;
 			return;
 		}
-		else if((GPIO_PORTF_DATA_R &0X10) == 0)
+		else if((GPIO_PORTF_DATA_R &0X10) == 0){
 			*falling_edges = 0;
-	}
-	GPIO_PORTF_DATA_R &= ~0X0C;
-
-/*		if(falling_edges%2==1){
-			do{
-				GPIO_PORTF_DATA_R ^= 0X0C;
-				Systick_Wait_ms(500);
-			}while((GPIO_PORTF_DATA_R &0X1)!=0 && (GPIO_PORTF_DATA_R &0X10) != 0);
-		}
-		if(falling_edges%2==0){
-			LCD_Cmd(clear_display);
+			GPIO_PORTF_DATA_R &= ~0X0C;
 		}
 	}
-	if((GPIO_PORTF_MIS_R & 0X02)==0X02){
-		GPIO_PORTF_ICR_R |=0X02;
-		do{
-			GPIO_PORTF_DATA_R ^= 0X0C;
-			 Systick_Wait_ms(500);
-		}while((GPIO_PORTF_DATA_R &0X02)!=1);
-	}*/
 }
 
 

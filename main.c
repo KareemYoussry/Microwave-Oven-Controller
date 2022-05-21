@@ -3,6 +3,7 @@
 #include "./keypad/keypad.h"
 #include "./CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
 #include "./Microwave_Functions/Microwave_Functions.h"
+extern unsigned char *falling_edges;
 
 //unsigned char button_in2;
 //unsigned char button_in1;
@@ -19,7 +20,7 @@ int main(void)
   LCD_Init();
   keypad_Init();
 	portEinit();
-
+	*falling_edges=0;
   while (1)
   {
 		leds_off();

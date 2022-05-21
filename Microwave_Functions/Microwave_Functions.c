@@ -16,9 +16,9 @@ void popCorn(void){
 	do{
 		button_in2 = sw2_input();
   }while(button_in2);
-	leds_on();
 	LCD_StringPos("Time: ", 2, 0);
 	LCD_CountDown(sec,mins);
+	*falling_edges = 0;
 	LCD_Cmd(clear_display);
 	
 }
@@ -32,12 +32,9 @@ void popCorn(void){
 void LCD_CountDown(unsigned char sec[],unsigned char min[])
 {
 	unsigned char Mins = min[0];
-	for(Mins = min[0]; min[0] <= Mins;sec[1]--)
+	for(Mins = min[0]; min[0] <= Mins && *falling_edges!=2;sec[1]--)
 	{
 		LCD_Cmd(SecondRow + 6);
-		
-		if (*falling_edges == 2)
-			return;
 
 		//displaying time in this format XX:XX
 		LCD_Write_Char(min[0]+48);	//Writes the ASCII form of the minute tens
