@@ -1,0 +1,15 @@
+.\microwave_functions.o: Microwave_Functions\Microwave_Functions.c
+.\microwave_functions.o: C:\Keil\ARM\Inc\TI\TM4C123\tm4c123gh6pm.h
+.\microwave_functions.o: C:\Keil\ARM\CMSIS\Include\core_cm4.h
+.\microwave_functions.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\microwave_functions.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\microwave_functions.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\microwave_functions.o: C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
+.\microwave_functions.o: C:\Keil\ARM\Inc\TI\TM4C123\system_TM4C123.h
+.\microwave_functions.o: Microwave_Functions\../LCD/LCD.h
+.\microwave_functions.o: Microwave_Functions\../LCD/../tm4c123gh6pm.h
+.\microwave_functions.o: Microwave_Functions\../LCD/../timer/timer.h
+.\microwave_functions.o: C:\Keil\ARM\ARMCC\bin\..\include\inttypes.h
+.\microwave_functions.o: Microwave_Functions\../keypad/keypad.h
+.\microwave_functions.o: Microwave_Functions\Microwave_Functions.h
+.\microwave_functions.o: Microwave_Functions\../CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h

@@ -460,6 +460,16 @@
               <FileType>5</FileType>
               <FilePath>.\Microwave_Functions\Microwave_Functions.h</FilePath>
             </File>
+            <File>
+              <FileName>CONDITION_FUNCTIONS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\CONDITIONS_FUNCTIONS\CONDITION_FUNCTIONS.h</FilePath>
+            </File>
+            <File>
+              <FileName>CONDITION_FUNCTIONS.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\CONDITIONS_FUNCTIONS\CONDITION_FUNCTIONS.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
