@@ -2,7 +2,7 @@
 #include "../timer/timer.h"
 #include "../LCD/LCD.h"
 
-unsigned char *falling_edges;
+volatile unsigned char falling_edges;
 
 void portEinit(){
 	SYSCTL_RCGCGPIO_R |=0x10;
@@ -70,16 +70,12 @@ void  GPIOF_Handler()
 	if((GPIO_PORTF_MIS_R & 0X10)==0X10){	
 		int z = 0;
 		GPIO_PORTF_ICR_R |=0X10;
-		GPIO_PORTF_DATA_R ^= 0X0C;
-		*falling_edges+=48;
-		LCD_StringPos(falling_edges,1,1);
-					*falling_edges+=48;
-
-		if(*falling_edges > 2){
+		if(falling_edges >= 2){
 			GPIO_PORTF_DATA_R &= ~0X0C;
 			return;
 		}
-		*falling_edges = 1;
+		GPIO_PORTF_DATA_R ^= 0X0C;
+		falling_edges = 1;
 		Systick_Wait_ms(200);
 		do{
 			z++;
@@ -89,15 +85,12 @@ void  GPIOF_Handler()
 				z = 0;
 			}
 		}while((GPIO_PORTF_DATA_R &0X1)!=0 && (GPIO_PORTF_DATA_R &0X10) != 0);
-		if((GPIO_PORTF_DATA_R &0X1)==0){
-			(*falling_edges)++;
-			GPIO_PORTF_DATA_R &= ~0X0C;
-			return;
-		}
-		else if((GPIO_PORTF_DATA_R &0X10) == 0){
-			*falling_edges = 0;
+		if((GPIO_PORTF_DATA_R &0X10)==0){
+			falling_edges++;
 			GPIO_PORTF_DATA_R &= ~0X0C;
 		}
+		else if((GPIO_PORTF_DATA_R &0X1) == 0)
+			GPIO_PORTF_DATA_R &= ~0X0C;
 	}
 }
 

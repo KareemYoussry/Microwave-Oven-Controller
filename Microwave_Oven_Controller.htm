@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Microwave_Oven_Controller.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Microwave_Oven_Controller.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sat May 21 17:36:28 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sun May 22 12:43:18 2022
 <BR><P>
 <H3>Maximum Stack Usage =         84 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1086,7 +1086,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 132 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 164 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = main &rArr; popCorn &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portFinit
@@ -1161,14 +1161,13 @@ Global Symbols
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8c]"></a>LCD_StringPos</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, lcd.o(.text))
+<P><STRONG><a name="[8c]"></a>LCD_StringPos</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOF_Handler
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
+<BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
 </UL>
 
 <P><STRONG><a name="[8e]"></a>SysTick_Wait</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, timer.o(.text))
@@ -1230,7 +1229,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8f]"></a>LCD_CountDown</STRONG> (Thumb, 150 bytes, Stack size 16 bytes, microwave_functions.o(.text))
+<P><STRONG><a name="[8f]"></a>LCD_CountDown</STRONG> (Thumb, 148 bytes, Stack size 16 bytes, microwave_functions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = LCD_CountDown &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
@@ -1240,7 +1239,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
 </UL>
 
-<P><STRONG><a name="[84]"></a>popCorn</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, microwave_functions.o(.text))
+<P><STRONG><a name="[84]"></a>popCorn</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, microwave_functions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = popCorn &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw2_input
@@ -1266,11 +1265,10 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[28]"></a>GPIOF_Handler</STRONG> (Thumb, 258 bytes, Stack size 8 bytes, condition_functions.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = GPIOF_Handler &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
+<P><STRONG><a name="[28]"></a>GPIOF_Handler</STRONG> (Thumb, 202 bytes, Stack size 8 bytes, condition_functions.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIOF_Handler &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1ms
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)

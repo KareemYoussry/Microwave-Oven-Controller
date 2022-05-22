@@ -4,7 +4,7 @@
 #include "Microwave_Functions.h"
 #include "../CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
 
-extern unsigned char *falling_edges;
+extern volatile unsigned char falling_edges;
 unsigned char button_in2;
 unsigned char button_in1;
 
@@ -18,9 +18,8 @@ void popCorn(void){
   }while(button_in2);
 	LCD_StringPos("Time: ", 2, 0);
 	LCD_CountDown(sec,mins);
-	*falling_edges = 0;
-	LCD_Cmd(clear_display);
 	
+	LCD_Cmd(clear_display);
 }
 
 
@@ -32,7 +31,7 @@ void popCorn(void){
 void LCD_CountDown(unsigned char sec[],unsigned char min[])
 {
 	unsigned char Mins = min[0];
-	for(Mins = min[0]; min[0] <= Mins && *falling_edges!=2;sec[1]--)
+	for(Mins = min[0]; min[0] <= Mins && falling_edges!=2;sec[1]--)
 	{
 		LCD_Cmd(SecondRow + 6);
 

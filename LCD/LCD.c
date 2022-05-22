@@ -87,10 +87,10 @@ void LCD_StringPos(char *str, unsigned char Line, unsigned char Pos)
 		switch (Line)
 		{
 			case 1:
-				LCD_Cmd((FirstRow + Pos));
+				LCD_Cmd((FirstRow | Pos));
 				break;
 			case 2:
-				LCD_Cmd((SecondRow + Pos));
+				LCD_Cmd((SecondRow | Pos));
 				break;
 		}
 	}
