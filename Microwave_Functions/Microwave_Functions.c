@@ -101,9 +101,11 @@ void D_Key (void){
 		unsigned char secs [2]; // declaring array for seconds
 		unsigned char mins [2]; // declaring array for minutes
 		unsigned char ff = 0;	
-			unsigned char values[4]; // declaring array to use for input values
-			int ite; // declaring iteration variable
+		unsigned char values[4]; // declaring array to use for input values
+		int ite; // declaring iteration variable
+
 		LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
+
 		for (ite = 0 ; ite <4 ; ite++){  // Iterating to get values and print them on LCD
 			do{
 				values[ite] = keypad_getkey(); // Get value
@@ -125,4 +127,60 @@ void D_Key (void){
 
 		
 		LCD_CountDown (secs,mins);
-}	
+}
+
+void Beef(void){
+	char input=0;
+	unsigned char mins[2]	=	{0};
+	unsigned char secs[2]	=	{0};
+	int time;
+	
+	LCD_StringPos("Beef weight?",1,0); 
+	do {
+	input = keypad_getkey(); 
+		if (input>'0'&&input<='9')
+			break;  
+		else {
+			LCD_StringPos("Err", 2, 0);
+			Systick_Wait_ms(2000); 
+		}
+	}while(1);
+		input -= 48 ;
+	time = input*30; 
+	
+	
+	mins[0]	=	time/600 ;			// calculate tens of minutes
+	mins[1]	=	(time/60)%10 ;	// calculate units of minutes
+	secs[0]	=	(time%60)/10;		// calculate tens of seconds 
+	secs[1]	=	(time%60)%10 ;	// calculate units of seconds 
+	LCD_CountDown(mins,secs);
+}
+
+void chicken(void){
+	char input=0;
+	unsigned char mins[2]	=	{0};
+	unsigned char secs[2]	=	{0};
+	int time;
+	
+	LCD_StringPos("Chicken weight?",1,0); 
+	
+	do {
+	input =keypad_getkey(); 
+		if (input>'0'&&input<='9')
+			break;
+		else { 
+			LCD_StringPos("Err", 2, 0);
+			Systick_Wait_ms(2000); 
+		}
+	}while(1);
+	input -= 48 ;
+	time = input*12; 
+
+	
+	mins[0]	=	time/600 ;			// calculate tens of minutes
+	mins[1]	=	(time/60)%10 ;	// calculate units of minutes
+	secs[0]	=	(time%60)/10;		// calculate tens of seconds 
+	secs[1]	=	(time%60)%10 ;	// calculate units of seconds 
+	LCD_CountDown(mins,secs);
+}
+
