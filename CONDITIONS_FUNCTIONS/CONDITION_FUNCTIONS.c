@@ -30,9 +30,12 @@ void GPIOE_Handler()
 {
 	GPIO_PORTE_ICR_R =0X10;
 	while((GPIO_PORTE_DATA_R &0X10)==0){
-		GPIO_PORTF_DATA_R ^= 0X0C;
+		GPIO_PORTF_DATA_R ^= 0X0E;
 		Systick_Wait_ms(500);
 	}
+	GPIO_PORTF_DATA_R &= ~0X0E;
+	
+
 }
 
 
@@ -48,11 +51,11 @@ void portFinit(){
 	GPIO_PORTF_DEN_R |=0X1F;
 	GPIO_PORTF_PUR_R 	|=0X11;
 	GPIO_PORTF_DATA_R |= 0X10;//SW1 AND SW2 UNPRESSED SW3 PRESSED (OPEN DOOR)
-	GPIO_PORTF_IS_R &= ~0X12;
-	GPIO_PORTF_IBE_R &= ~0X12;
-	GPIO_PORTF_IEV_R &= ~0X12;
-	GPIO_PORTF_ICR_R =0X12;
-	GPIO_PORTF_IM_R |=0X12;
+	GPIO_PORTF_IS_R &= ~0X10;
+	GPIO_PORTF_IBE_R &= ~0X10;
+	GPIO_PORTF_IEV_R &= ~0X10;
+	GPIO_PORTF_ICR_R =0X10;
+	GPIO_PORTF_IM_R |=0X10;
 	NVIC_PRI7_R=((NVIC_PRI7_R) & (0XFF00FFFF))|0X00A00000;
 	NVIC_EN0_R=0X40000000;
 	//GPIO_PORTF_MIS_R |=0X10;
@@ -66,27 +69,27 @@ void  GPIOF_Handler()
 		if(flag >= 1)
 			return;
 		if(falling_edges >= 2){
-			GPIO_PORTF_DATA_R &= ~0X0C;
+			GPIO_PORTF_DATA_R &= ~0X0E;
 			return;
 		}
-		GPIO_PORTF_DATA_R ^= 0X0C;
+		GPIO_PORTF_DATA_R ^= 0X0E;
 		falling_edges = 1;
 		Systick_Wait_ms(200);
 		do{
 			z++;
 			Systick_Wait_1ms();
 			if(z>=500){
-				GPIO_PORTF_DATA_R ^= 0X0C;
+				GPIO_PORTF_DATA_R ^= 0X0E;
 				z = 0;
 			}
 		}while((GPIO_PORTF_DATA_R &0X1)!=0 && (GPIO_PORTF_DATA_R &0X10) != 0);
 		if((GPIO_PORTF_DATA_R &0X10)==0){
 			falling_edges++;
-			GPIO_PORTF_DATA_R &= ~0X0C;
+			GPIO_PORTF_DATA_R &= ~0X0E;
 		}
 		else if((GPIO_PORTF_DATA_R &0X1) == 0)
 			
-			GPIO_PORTF_DATA_R &= ~0X0C;
+			GPIO_PORTF_DATA_R &= ~0X0E;
 	}
 }
 
@@ -99,20 +102,20 @@ void stop_cooking(){
 
 void leds_on(){
 	//green and blue leds on
-	GPIO_PORTF_DATA_R |= 0X0C;
+	GPIO_PORTF_DATA_R |= 0X0E;
 }
 
 
 void leds_off(){
 	//green and blue leds off
-		GPIO_PORTF_DATA_R &= ~0X0C;
+		GPIO_PORTF_DATA_R &= ~0X0E;
 }
 
 	
 void leds_blink(){
 	int i;
 	for( i=0;i<6;i++){		
-		GPIO_PORTF_DATA_R ^= 0X0C;
+		GPIO_PORTF_DATA_R ^= 0X0E;
 		Systick_Wait_ms(500);
 	}
 }

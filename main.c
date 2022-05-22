@@ -4,11 +4,10 @@
 #include "./CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
 #include "./Microwave_Functions/Microwave_Functions.h"
 extern volatile unsigned char falling_edges;
-extern volatile unsigned char flag;
-//unsigned char button_in2;
-//unsigned char button_in1;
- 
-
+extern volatile unsigned char flag; //1: for stopping in the interrupt
+																		//2: for D case to print error
+																		//3: 
+																		//4: 
 	
 int main(void)
 {
@@ -42,22 +41,29 @@ int main(void)
         break;
 
       case 'D':
+				D_Key();
         break;
     }
+		LCD_Cmd(clear_display);
 		if(falling_edges == 2){
 			LCD_String("Stopped!");
-			buzzer_on();
 			leds_blink();
 			buzzer_off();			
 			LCD_Cmd(clear_display);
+			continue;
 		}
-		else{
+		
+		
+		if(flag == 2)
+			LCD_String("Err");
+		else
 			LCD_String("Done!");
-			buzzer_on();
-			leds_blink();
-			buzzer_off();			
-			LCD_Cmd(clear_display);
-		}
+		
+		buzzer_on();
+		leds_blink();
+		buzzer_off();			
+		LCD_Cmd(clear_display);
+
   }
 	
 	

@@ -4,26 +4,36 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 D:\Education\College\Courses\Junior\Second Term\Embedded Systems\Microwave-Oven-Controller\Microwave_Oven_Controller.uvproj
-Project File Date:  05/21/2022
+Project File Date:  05/22/2022
 
 <h2>Output:</h2>
 Build target 'Target 1'
-linking...
-Program Size: Code=2476 RO-data=652 RW-data=24 ZI-data=512  
-".\Microwave_Oven_Controller.axf" - 0 Error(s), 0 Warning(s).
-ne
+compiling main.c...
+./CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h(17): warning:  #1-D: last line of file ends without a newline
+  void D_Key(void);
+main.c(70): warning:  #1-D: last line of file ends without a newline
   }
-Microwave_Functions\Microwave_Functions.c: 1 warning, 0 errors
+main.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=2476 RO-data=652 RW-data=24 ZI-data=512  
-".\Microwave_Oven_Controller.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=2852 RO-data=652 RW-data=24 ZI-data=512  
+".\Microwave_Oven_Controller.axf" - 0 Error(s), 2 Warning(s).
 Load "D:\\Education\\College\\Courses\\Junior\\Second Term\\Embedded Systems\\Microwave-Oven-Controller\\Microwave_Oven_Controller.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
 Erase Done.
 Programming Done.
 Verify OK.
-without a newline
+errors
+compiling CONDITION_FUNCTIONS.c...
+CONDITIONS_FUNCTIONS\CONDITION_FUNCTIONS.h(17): warning:  #1-D: last line of file ends without a newline
+  void D_Key(void);
+CONDITIONS_FUNCTIONS\CONDITION_FUNCTIONS.c(137): warning:  #1-D: last line of file ends without a newline
   }
-CONDITIONS_FUNCTIONS\CONDITION_FUNCTIONS.c: 1 warning, 0 errors
-".\Microwave_Oven_Controller.axf" - 1 Error(s), 3 Warning(s).
-Target not created
+CONDITIONS_FUNCTIONS\CONDITION_FUNCTIONS.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=2816 RO-data=652 RW-data=24 ZI-data=512  
+".\Microwave_Oven_Controller.axf" - 0 Error(s), 6 Warning(s).
+Load "D:\\Education\\College\\Courses\\Junior\\Second Term\\Embedded Systems\\Microwave-Oven-Controller\\Microwave_Oven_Controller.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.
