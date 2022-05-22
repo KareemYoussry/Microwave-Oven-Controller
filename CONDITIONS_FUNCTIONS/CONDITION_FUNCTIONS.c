@@ -3,6 +3,8 @@
 #include "../LCD/LCD.h"
 
 volatile unsigned char falling_edges;
+volatile unsigned char flag; //a flag to exit the interrupt in the begginning
+
 void portEinit(){
 	SYSCTL_RCGCGPIO_R |=0x10;
 	while((SYSCTL_RCGCGPIO_R & 0x10)==0);
@@ -61,6 +63,8 @@ void  GPIOF_Handler()
 	if((GPIO_PORTF_MIS_R & 0X10)==0X10){	
 		int z = 0;
 		GPIO_PORTF_ICR_R |=0X10;
+		if(flag >= 1)
+			return;
 		if(falling_edges >= 2){
 			GPIO_PORTF_DATA_R &= ~0X0C;
 			return;

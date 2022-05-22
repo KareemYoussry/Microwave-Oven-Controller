@@ -3,7 +3,7 @@
 #include "../keypad/keypad.h"
 #include "Microwave_Functions.h"
 #include "../CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
-
+extern volatile unsigned char flag;
 extern volatile unsigned char falling_edges;
 unsigned char button_in2;
 unsigned char button_in1;
@@ -16,6 +16,7 @@ void popCorn(void){
 	do{
 		button_in2 = sw2_input();
   }while(button_in2);
+	flag = 0;
 	LCD_StringPos("Time: ", 2, 0);
 	LCD_CountDown(sec,mins);
 	

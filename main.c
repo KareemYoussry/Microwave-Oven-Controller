@@ -4,7 +4,7 @@
 #include "./CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
 #include "./Microwave_Functions/Microwave_Functions.h"
 extern volatile unsigned char falling_edges;
-
+extern volatile unsigned char flag;
 //unsigned char button_in2;
 //unsigned char button_in1;
  
@@ -22,6 +22,7 @@ int main(void)
   while (1)
   {
 		falling_edges = 0;
+		flag = 1;
 		leds_off();
 		LCD_String("Enter:");
     c = keypad_getkey();
