@@ -3,9 +3,6 @@
 #include "./keypad/keypad.h"
 #include "./CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
 #include "./Microwave_Functions/Microwave_Functions.h"
-
-//unsigned char button_in2;
-//unsigned char button_in1;
  
 unsigned char button_in2;
 unsigned char button_in1;
@@ -143,6 +140,10 @@ void D_Key (void){
 			mins [0] = values[0];
 			mins [1] = values[1];
      Flag_D=0;
+			do
+        {
+            button_in2 = sw2_input();
+        }while(button_in2);
 			LCD_CountDown (secs,mins);
 		  LCD_Cmd(clear_display);
 	  
@@ -259,22 +260,23 @@ if(falling_edges==1)
 	if(falling_edges ==1)
 		{falling_edges=0;}
   }
-	
-	if(falling_edges==2)
-	{
-	LCD_Cmd(clear_display);
-	}
+
 	
 	
 }
 	
 
 void pause(){
-	
+	int z;
 do{
-		GPIO_PORTF_DATA_R ^= 0X0E;
-		 Systick_Wait_ms(50);
-	
+		//GPIO_PORTF_DATA_R ^= 0X0E;
+		 //Systick_Wait_ms(50);
+	z++;
+            Systick_Wait_1ms();
+            if(z>=500)
+            {
+                GPIO_PORTF_DATA_R ^= 0X0C;
+                z = 0;}
 	if(sw1_input()==0)
 		{  
 			falling_edges = 2;
@@ -296,14 +298,14 @@ LCD_Cmd(clear_display);
 
 void leds_on(){
 	
-	GPIO_PORTF_DATA_R |= 0X0C;
+	GPIO_PORTF_DATA_R |= 0X0E;
 
 }
 
 
 void leds_off(){
 	
-	GPIO_PORTF_DATA_R &= ~0X0C;
+	GPIO_PORTF_DATA_R &= ~0X0E;
 	}
 
 	
