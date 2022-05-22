@@ -2,18 +2,26 @@
 #include "../LCD/LCD.h"
 #include "../keypad/keypad.h"
 #include "Microwave_Functions.h"
+#include "../CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
+extern volatile unsigned char flag;
+extern volatile unsigned char falling_edges;
+unsigned char button_in2;
+unsigned char button_in1;
+extern volatile unsigned char Dflag; 
 
 void popCorn(void){
-	unsigned char mins[2] = {0, 1},sec[2]={0,0};
+	unsigned char mins[2] = {0, 0},sec[2]={5,0};
 	
 	LCD_Cmd(clear_display);
 	LCD_StringPos("Popcorn", 1, 0);
+	do{
+		button_in2 = sw2_input();
+  }while(button_in2);
+	flag = 0;
 	LCD_StringPos("Time: ", 2, 0);
-	
+	leds_on();
+
 	LCD_CountDown(sec,mins);
-	LCD_Cmd(clear_display);
-	LCD_String("Done!");
-	Systick_Wait_ms(3000);
 	
 	LCD_Cmd(clear_display);
 }
@@ -23,10 +31,11 @@ void popCorn(void){
 //sec[]: 2d-array:{tens of seconds, ones of seconds} as this {5,9} = 59 second
 //min[]: 2d-array:{tens of minutes, ones of minutes} as this {1,5} = 15 min
 
+
 void LCD_CountDown(unsigned char sec[],unsigned char min[])
 {
 	unsigned char Mins = min[0];
-	for(Mins = min[0]; min[0] <= Mins;sec[1]--)
+	for(Mins = min[0]; min[0] <= Mins && falling_edges!=2;sec[1]--)
 	{
 		LCD_Cmd(SecondRow + 6);
 
@@ -36,8 +45,8 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 		LCD_Write_Char(':');
 		LCD_Write_Char(sec[0]+48);	//Writes the ASCII form of the second tens
 		LCD_Write_Char(sec[1]+48);	//Writes the ASCII form of the second ones
-
-		Systick_Wait_ms(1000);  //counting down time each sec
+		
+		Systick_Wait_ms(300);  //counting down time each sec
 
 		//to be a timer
 		if(sec[1] < 1 || sec[1] > 9)
@@ -58,7 +67,7 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 	}
 }
 
-void checknum(unsigned char values [], int n){
+char checknum(unsigned char values [], int n){
 	char word[5] = "00:00";
 			switch (n){
 				case 0: // first case: first digit is entered
@@ -77,9 +86,8 @@ void checknum(unsigned char values [], int n){
 					LCD_StringPos(word,2,0);
 					break;
 				case 3: // Fourth case: fourth digit is entered
-					if ((values[0] >=3) && (values[1] > 0))
-						LCD_StringPos("Error",2,0);  // checking if the minutes are less than or equal 30 minutes
-					
+					if ((values[0] >='3') && (values[1] > '0')&&(values[2] > '0')&&(values[3] > '0'))
+						return 1;
 					word[4] = values[3];
 					word[3] = values[2];
 					word[1] = values[1];
@@ -87,29 +95,38 @@ void checknum(unsigned char values [], int n){
 					LCD_StringPos(word,2,0);
 					break;
 		}
-	}
+			return 0;
+}
 
 void D_Key (void){
-			unsigned char values[4]; // declaring array to use for input values
-			int ite; // declaring iteration variable
-		LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
-		for (ite = 0 ; ite <4 ; ite++){  // Iterating to get values and print them on LCD
-			do{
-				values[ite] = keypad_getkey(); // Get value
-			}
-			while (values[ite] >= '0' && values[ite] <= '9');
-				Systick_Wait_ms(250);
-				checknum(values,ite);
+	unsigned char secs [2]; // declaring array for seconds
+	unsigned char mins [2]; // declaring array for minutes
+	unsigned char f30 = 0;		//flag to indicate over 30 minutes input
+	unsigned char values[4]; // declaring array to use for input values
+	int ite; // declaring iteration variable
+	LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
+	for (ite = 0 ; ite <4 ; ite++){  // Iterating to get values and print them on LCD
+		if(Dflag == 0)
+			ite = 0;
+		do{
+			values[ite] = keypad_getkey(); // Get value
+		}while (values[ite] < '0' && values[ite] > '9');
+		Systick_Wait_ms(250);
+		f30 = checknum(values,ite);
+		if(f30){
+			flag = 2;
+			return;
 		}
-		if ((GPIO_PORTF_DATA_R&0x01) != 0x01) 
-			LCD_Cmd(clear_display);
-		else if ((GPIO_PORTF_DATA_R&0x10) != 0x10) {
-			unsigned char secs [2]; // declaring array for seconds
-			unsigned char mins [2]; // declaring array for minutes
-			mins [0] = values[0]-48;
-			mins [1] = values[1]-48;
-			secs [0] = values[2]-48;
-			secs [1] = values[3]-48;
-			LCD_CountDown (secs,mins);
-	}
+	}	
+	mins [0] = values[0]-48;
+	mins [1] = values[1]-48;
+	secs [0] = values[2]-48;
+	secs [1] = values[3]-48;
+	flag = 0;
+	do{
+		button_in2 = sw2_input();
+	}while(button_in2);
+
+	Dflag = 0;
+	LCD_CountDown (secs,mins);
 }	
