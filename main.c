@@ -21,6 +21,7 @@ int main(void)
 	falling_edges=0;
   while (1)
   {
+		falling_edges = 0;
 		leds_off();
 		LCD_String("Enter:");
     c = keypad_getkey();

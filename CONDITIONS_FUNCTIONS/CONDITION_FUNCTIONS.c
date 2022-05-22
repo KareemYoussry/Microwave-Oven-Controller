@@ -3,7 +3,6 @@
 #include "../LCD/LCD.h"
 
 volatile unsigned char falling_edges;
-
 void portEinit(){
 	SYSCTL_RCGCGPIO_R |=0x10;
 	while((SYSCTL_RCGCGPIO_R & 0x10)==0);
@@ -25,8 +24,6 @@ void portEinit(){
 }
 
 
-
-
 void GPIOE_Handler()
 {
 	GPIO_PORTE_ICR_R =0X10;
@@ -35,12 +32,6 @@ void GPIOE_Handler()
 		Systick_Wait_ms(500);
 	}
 }
-
-
-
-
-
-
 
 
 void portFinit(){
@@ -90,6 +81,7 @@ void  GPIOF_Handler()
 			GPIO_PORTF_DATA_R &= ~0X0C;
 		}
 		else if((GPIO_PORTF_DATA_R &0X1) == 0)
+			
 			GPIO_PORTF_DATA_R &= ~0X0C;
 	}
 }
