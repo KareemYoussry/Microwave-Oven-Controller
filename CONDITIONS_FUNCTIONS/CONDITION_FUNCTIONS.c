@@ -2,13 +2,13 @@
 #include "../timer/timer.h"
 #include "../LCD/LCD.h"
 
-//volatile extern unsigned char falling_edges=0;
 volatile unsigned char falling_edges;
+volatile unsigned char flag; //a flag to exit the interrupt in the begginning
+extern volatile unsigned char Dflag; //for the interrupt of the D_Flag
 
 void portEinit(){
 	SYSCTL_RCGCGPIO_R |=0x10;
 	while((SYSCTL_RCGCGPIO_R & 0x10)==0);
-	//GPIO_PORTE_LOCK_R=0x4C4F434B;
 	GPIO_PORTE_CR_R |=0X30;
 	GPIO_PORTE_AMSEL_R &= ~0X30;
 	GPIO_PORTE_PCTL_R &= ~0XFF0000;
@@ -27,22 +27,17 @@ void portEinit(){
 }
 
 
-
-
 void GPIOE_Handler()
 {
 	GPIO_PORTE_ICR_R =0X10;
 	while((GPIO_PORTE_DATA_R &0X10)==0){
-		GPIO_PORTF_DATA_R ^= 0X0C;
+		GPIO_PORTF_DATA_R ^= 0X0E;
 		Systick_Wait_ms(500);
 	}
+	GPIO_PORTF_DATA_R &= ~0X0E;
+	
+
 }
-
-
-
-
-
-
 
 
 void portFinit(){
@@ -57,94 +52,50 @@ void portFinit(){
 	GPIO_PORTF_DEN_R |=0X1F;
 	GPIO_PORTF_PUR_R 	|=0X11;
 	GPIO_PORTF_DATA_R |= 0X10;//SW1 AND SW2 UNPRESSED SW3 PRESSED (OPEN DOOR)
-	GPIO_PORTF_IS_R &= ~0X12;
-	GPIO_PORTF_IBE_R &= ~0X12;
-	GPIO_PORTF_IEV_R &= ~0X12;
-	GPIO_PORTF_ICR_R =0X12;
-	GPIO_PORTF_IM_R |=0X12;
+	GPIO_PORTF_IS_R &= ~0X10;
+	GPIO_PORTF_IBE_R &= ~0X10;
+	GPIO_PORTF_IEV_R &= ~0X10;
+	GPIO_PORTF_ICR_R =0X10;
+	GPIO_PORTF_IM_R |=0X10;
 	NVIC_PRI7_R=((NVIC_PRI7_R) & (0XFF00FFFF))|0X00A00000;
 	NVIC_EN0_R=0X40000000;
 	//GPIO_PORTF_MIS_R |=0X10;
 }
 
-/*void portDinit(){
-SYSCTL_RCGCGPIO_R |=0x8;
-while((SYSCTL_RCGCGPIO_R & 0x8)==0);
-GPIO_PORTD_LOCK_R=0x4C4F434B;
-GPIO_PORTE_CR_R |=0X03;
-GPIO_PORTE_AMSEL_R &= ~0X03;
-GPIO_PORTE_PCTL_R &= ~0X0FF;
-GPIO_PORTE_AFSEL_R &= ~0X3;
-GPIO_PORTE_DIR_R |=0X02;// 
-GPIO_PORTE_DEN_R |=0X3;
-GPIO_PORTE_PUR_R 	|=0X1;
-GPIO_PORTE_DATA_R |= 0X01;//DOOR CLOSED INITIALLY
-GPIO_PORTE_IS_R &= ~0X01;
-GPIO_PORTE_IBE_R &= ~0X01;
-GPIO_PORTE_IEV_R &= ~0X01;
-GPIO_PORTE_ICR_R =0X01;
-GPIO_PORTE_IM_R |=0X01;
-NVIC_PRI0_R=((NVIC_PRI0_R) & (0X00FFFFFF))|0X00A00000;
-NVIC_EN0_R=0X10;*/
-
-//}
-/*void portEinit(){
-SYSCTL_RCGCGPIO_R |=0x10;
-while((SYSCTL_RCGCGPIO_R & 0x10)==0);
-GPIO_PORTE_LOCK_R=0x4C4F434B;
-GPIO_PORTE_CR_R |=0X30;
-GPIO_PORTE_AMSEL_R &= ~0X30;
-GPIO_PORTE_PCTL_R &= ~0XFF0000;
-GPIO_PORTE_AFSEL_R &= ~0X30;
-GPIO_PORTE_DIR_R |=0X20;// 
-GPIO_PORTE_DEN_R |=0X30;
-GPIO_PORTE_PUR_R 	|=0X10;
-GPIO_PORTE_DATA_R |= 0X10;//DOOR CLOSED INITIALLY
-GPIO_PORTE_IS_R &= ~0X10;
-GPIO_PORTE_IBE_R &= ~0X10;
-GPIO_PORTE_IEV_R &= ~0X10;
-GPIO_PORTE_ICR_R =0X10;
-GPIO_PORTE_IM_R |=0X10;
-NVIC_PRI1_R |=0X40;
-NVIC_EN0_R=0X10;
-
-}
-
-
-
-
-void GPIOE_Handler()
-{
-	GPIO_PORTD_ICR_R =0X10;
-	do{
-		GPIO_PORTF_DATA_R ^= 0X0C;
-		 Systick_Wait_ms(500);
-	}while((GPIO_PORTE_DATA_R &0X10)!=1);
-
-
-
-}*/
-void  GPIOF_Handler(void) 
+void  GPIOF_Handler() 
 {
 	if((GPIO_PORTF_MIS_R & 0X10)==0X10){	
+		int z = 0;
 		GPIO_PORTF_ICR_R |=0X10;
-		falling_edges=falling_edges+1;
-		if(falling_edges%2==1){
-			do{
-				GPIO_PORTF_DATA_R ^= 0X0C;
-				Systick_Wait_ms(500);
-			}while((GPIO_PORTF_DATA_R &0X1)!=0 && (GPIO_PORTF_DATA_R &0X10) != 0);
-		}
-		if(falling_edges%2==0){
+		if(flag >= 1)
+			return;
+		if(Dflag == 1){
 			LCD_Cmd(clear_display);
+			Dflag = 0;
+			return;
 		}
-	}
-	if((GPIO_PORTF_MIS_R & 0X02)==0X02){
-		GPIO_PORTF_ICR_R |=0X02;
+		if(falling_edges >= 2){
+			GPIO_PORTF_DATA_R &= ~0X0E;
+			return;
+		}
+		GPIO_PORTF_DATA_R ^= 0X0E;
+		falling_edges = 1;
+		Systick_Wait_ms(200);
 		do{
-			GPIO_PORTF_DATA_R ^= 0X0C;
-			 Systick_Wait_ms(500);
-		}while((GPIO_PORTF_DATA_R &0X02)!=1);
+			z++;
+			Systick_Wait_1ms();
+			if(z>=500){
+				GPIO_PORTF_DATA_R ^= 0X0E;
+				z = 0;
+			}
+		}while((GPIO_PORTF_DATA_R &0X1)!=0 && (GPIO_PORTF_DATA_R &0X10) != 0);
+		if((GPIO_PORTF_DATA_R &0X10)==0){
+			falling_edges++;
+			GPIO_PORTF_DATA_R &= ~0X0E;
+		}
+		else if((GPIO_PORTF_DATA_R &0X1) == 0)
+			
+			GPIO_PORTF_DATA_R &= ~0X0E;
 	}
 }
 
@@ -157,20 +108,20 @@ void stop_cooking(){
 
 void leds_on(){
 	//green and blue leds on
-	GPIO_PORTF_DATA_R |= 0X0C;
+	GPIO_PORTF_DATA_R |= 0X0E;
 }
 
 
 void leds_off(){
 	//green and blue leds off
-		GPIO_PORTF_DATA_R &= ~0X0C;
+		GPIO_PORTF_DATA_R &= ~0X0E;
 }
 
 	
 void leds_blink(){
 	int i;
 	for( i=0;i<6;i++){		
-		GPIO_PORTF_DATA_R ^= 0X0C;
+		GPIO_PORTF_DATA_R ^= 0X0E;
 		Systick_Wait_ms(500);
 	}
 }

@@ -13,3 +13,5 @@ void buzzer_on(void);
 void buzzer_off(void);
 unsigned char sw1_input(void);
 unsigned char sw2_input(void);
+char checknum(unsigned char values [], int n);
+void D_Key(void);
