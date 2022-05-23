@@ -2,11 +2,13 @@
 #include "../LCD/LCD.h"
 #include "../keypad/keypad.h"
 #include "Microwave_Functions.h"
-#include "../CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
+#include "../Conditions_Functions/Conditions_Functions.h"
 extern volatile unsigned char flag;
 extern volatile unsigned char falling_edges;
+extern volatile unsigned char SW3_Flag; //falgg for switch 3
 unsigned char button_in2;
 unsigned char button_in1;
+
 
 //Counter in minutes and seconds (making the count down appear in the LCD)
 //sec[]: 2d-array:{tens of seconds, ones of seconds} as this {5,9} = 59 second
@@ -59,7 +61,7 @@ void popCorn(void){
 	flag = 0;
 	LCD_StringPos("Time: ", 2, 0);
 	leds_on();
-
+	SW3_Flag = 1;
 	LCD_CountDown(sec,mins);
 	
 	LCD_Cmd(clear_display);
@@ -82,6 +84,7 @@ void Beef(void){
 			LCD_StringPos("Err", 2, 0);
 			Systick_Wait_ms(2000); 
 			LCD_Cmd(clear_display);
+			LCD_StringPos("Beef weight?",1,0);
 		}
 	}
 	
@@ -96,7 +99,7 @@ void Beef(void){
 	mins[1] = time /60;
 	secs[0] = (time%60) / 10 ;
 	secs[1] = time - mins[1] * 60 - secs[0] * 10;
-	
+	SW3_Flag = 1;
 	LCD_CountDown (secs,mins);
 
 }
@@ -116,6 +119,8 @@ void Chicken(void){
 		else { 
 			LCD_StringPos("Err", 2, 0);
 			Systick_Wait_ms(2000); 
+			LCD_Cmd(clear_display);
+			LCD_StringPos("Chicken weight?",1,0); 
 		}
 	}while(1);
 	LCD_Cmd(SecondRow);
@@ -133,6 +138,8 @@ void Chicken(void){
 	mins[1]	=	(time/60)%10 ;	// calculate units of minutes
 	secs[0]	=	(time%60)/10;		// calculate tens of seconds 
 	secs[1]	=	(time%60)%10 ;	// calculate units of seconds 
+	
+	SW3_Flag = 1;
 	LCD_CountDown(secs,mins);
 }
 
@@ -164,7 +171,7 @@ void D_Key (void){
 		secs [1] = values[3]-48;
 		flag = 0;
 
-		
+		SW3_Flag = 1;
 		LCD_CountDown (secs,mins);
 }
 

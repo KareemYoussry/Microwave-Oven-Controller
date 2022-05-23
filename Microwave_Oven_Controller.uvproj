@@ -461,14 +461,14 @@
               <FilePath>.\Microwave_Functions\Microwave_Functions.h</FilePath>
             </File>
             <File>
-              <FileName>CONDITION_FUNCTIONS.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\CONDITIONS_FUNCTIONS\CONDITION_FUNCTIONS.h</FilePath>
+              <FileName>Conditions_Functions.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Conditions_Functions\Conditions_Functions.c</FilePath>
             </File>
             <File>
-              <FileName>CONDITION_FUNCTIONS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\CONDITIONS_FUNCTIONS\CONDITION_FUNCTIONS.c</FilePath>
+              <FileName>Conditions_Functions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Conditions_Functions\Conditions_Functions.h</FilePath>
             </File>
           </Files>
         </Group>

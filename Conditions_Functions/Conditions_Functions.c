@@ -1,9 +1,10 @@
-#include "CONDITION_FUNCTIONS.h"
+#include "Conditions_Functions.h"
 #include "../timer/timer.h"
 #include "../LCD/LCD.h"
 
 volatile unsigned char falling_edges;
 volatile unsigned char flag; //a flag to exit the interrupt in the begginning
+volatile unsigned char SW3_Flag;
 
 void portEinit(){
 	SYSCTL_RCGCGPIO_R |=0x10;
@@ -12,23 +13,35 @@ void portEinit(){
 	GPIO_PORTE_AMSEL_R &= ~0X30;
 	GPIO_PORTE_PCTL_R &= ~0XFF0000;
 	GPIO_PORTE_AFSEL_R &= ~0X30;
-	GPIO_PORTE_DIR_R |=0X20;// 
-	GPIO_PORTE_DEN_R |=0X30;
-	GPIO_PORTE_PUR_R 	|=0X10;
+	GPIO_PORTE_DIR_R |= 0X20;// 
+	GPIO_PORTE_DEN_R |= 0X30;
+	GPIO_PORTE_PUR_R 	|= 0X10;
 	GPIO_PORTE_DATA_R |= 0X10;//DOOR CLOSED INITIALLY
 	GPIO_PORTE_IS_R &= ~0X10;
 	GPIO_PORTE_IBE_R &= ~0X10;
 	GPIO_PORTE_IEV_R &= ~0X10;
-	GPIO_PORTE_ICR_R =0X10;
-	GPIO_PORTE_IM_R |=0X10;
-	NVIC_PRI1_R =((NVIC_PRI1_R) & (0XFFFFFF00))|0X00000020;
+	GPIO_PORTE_ICR_R = 0X10;
+	GPIO_PORTE_IM_R |= 0X10;
+	NVIC_PRI1_R =((NVIC_PRI1_R) & (0XFFFFFF00))|0X00000010;
 	NVIC_EN0_R=0X10;
+}
+void portDinit(){
+	SYSCTL_RCGCGPIO_R |=0x8;
+	while((SYSCTL_RCGCGPIO_R & 0x8)==0);
+	GPIO_PORTE_CR_R |=0X1;
+	GPIO_PORTE_AMSEL_R &= ~0X1;
+	GPIO_PORTE_PCTL_R &= ~0XF;
+	GPIO_PORTE_AFSEL_R &= ~0X1;
+	GPIO_PORTE_DIR_R |= 0X1;// 
+	GPIO_PORTE_DEN_R |= 0X1;
 }
 
 
 void GPIOE_Handler()
 {
 	GPIO_PORTE_ICR_R =0X10;
+	if(SW3_Flag == 0)
+		return;
 	while((GPIO_PORTE_DATA_R &0X10)==0){
 		GPIO_PORTF_DATA_R ^= 0X0E;
 		Systick_Wait_ms(500);
@@ -101,20 +114,18 @@ void stop_cooking(){
 
 
 void leds_on(){
-	//green and blue leds on
 	GPIO_PORTF_DATA_R |= 0X0E;
 }
 
 
 void leds_off(){
-	//green and blue leds off
 		GPIO_PORTF_DATA_R &= ~0X0E;
 }
 
 	
 void leds_blink(){
 	int i;
-	for( i=0;i<6;i++){		
+	for(i=0;i<6;i++){		
 		GPIO_PORTF_DATA_R ^= 0X0E;
 		Systick_Wait_ms(500);
 	}
@@ -122,11 +133,11 @@ void leds_blink(){
 
 
 void buzzer_on(){
-	GPIO_PORTE_DATA_R |=0X20;
+	GPIO_PORTE_DATA_R |= 0X2;
 }
 
 void buzzer_off(){
-	GPIO_PORTE_DATA_R &= ~0X20;
+	GPIO_PORTE_DATA_R &= ~0X2;
 }
 unsigned char sw1_input(){
 	return GPIO_PORTF_DATA_R &0X10;
