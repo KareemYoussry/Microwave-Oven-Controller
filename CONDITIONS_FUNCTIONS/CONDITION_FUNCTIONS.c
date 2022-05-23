@@ -4,7 +4,6 @@
 
 volatile unsigned char falling_edges;
 volatile unsigned char flag; //a flag to exit the interrupt in the begginning
-extern volatile unsigned char Dflag; //for the interrupt of the D_Flag
 
 void portEinit(){
 	SYSCTL_RCGCGPIO_R |=0x10;
@@ -69,11 +68,6 @@ void  GPIOF_Handler()
 		GPIO_PORTF_ICR_R |=0X10;
 		if(flag >= 1)
 			return;
-		if(Dflag == 1){
-			LCD_Cmd(clear_display);
-			Dflag = 0;
-			return;
-		}
 		if(falling_edges >= 2){
 			GPIO_PORTF_DATA_R &= ~0X0E;
 			return;

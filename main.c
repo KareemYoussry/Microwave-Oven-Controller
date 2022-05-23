@@ -4,13 +4,10 @@
 #include "./CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
 #include "./Microwave_Functions/Microwave_Functions.h"
 extern volatile unsigned char falling_edges;
-volatile unsigned char Dflag; //for the interrupt of the D_Flag
-
 extern volatile unsigned char flag; //1: for stopping in the interrupt
 																		//2: for D case to print error
 																		//3: 
 																		//4: 
-																		//5: to continue
 	
 int main(void)
 {
@@ -22,6 +19,7 @@ int main(void)
 	portEinit();
 	falling_edges=0;
   LCD_Cmd(clear_display);
+
 	while (1)
   {
 		falling_edges = 0;
@@ -35,7 +33,6 @@ int main(void)
     Systick_Wait_ms(250);
     switch(c){
       case 'A':
-			 LCD_Cmd(clear_display);
 			 popCorn();
 			 break;
 
@@ -48,8 +45,6 @@ int main(void)
         break;
 
       case 'D':
-				Dflag = 1;
-				LCD_Cmd(clear_display);
 				D_Key();
         break;
     }
@@ -72,6 +67,7 @@ int main(void)
 		leds_blink();
 		buzzer_off();			
 		LCD_Cmd(clear_display);
+
   }
 	
 	
