@@ -8,6 +8,7 @@ extern volatile unsigned char flag; //1: for stopping in the interrupt
 																		//2: for D case to print error
 extern volatile unsigned char SW3_Flag;
 
+
 int main(void)
 {
   char c;	

@@ -6,6 +6,7 @@ volatile unsigned char falling_edges;
 volatile unsigned char flag; //a flag to exit the interrupt in the begginning
 volatile unsigned char SW3_Flag;
 
+
 void portEinit(){
 	SYSCTL_RCGCGPIO_R |=0x10;
 	while((SYSCTL_RCGCGPIO_R & 0x10)==0);
@@ -25,16 +26,7 @@ void portEinit(){
 	NVIC_PRI1_R =((NVIC_PRI1_R) & (0XFFFFFF00))|0X00000010;
 	NVIC_EN0_R=0X10;
 }
-void portDinit(){
-	SYSCTL_RCGCGPIO_R |=0x8;
-	while((SYSCTL_RCGCGPIO_R & 0x8)==0);
-	GPIO_PORTE_CR_R |=0X1;
-	GPIO_PORTE_AMSEL_R &= ~0X1;
-	GPIO_PORTE_PCTL_R &= ~0XF;
-	GPIO_PORTE_AFSEL_R &= ~0X1;
-	GPIO_PORTE_DIR_R |= 0X1;// 
-	GPIO_PORTE_DEN_R |= 0X1;
-}
+
 
 
 void GPIOE_Handler()
@@ -133,11 +125,11 @@ void leds_blink(){
 
 
 void buzzer_on(){
-	GPIO_PORTE_DATA_R |= 0X2;
+	GPIO_PORTE_DATA_R |= 0X20;
 }
 
 void buzzer_off(){
-	GPIO_PORTE_DATA_R &= ~0X2;
+	GPIO_PORTE_DATA_R &= ~0X20;
 }
 unsigned char sw1_input(){
 	return GPIO_PORTF_DATA_R &0X10;
