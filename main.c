@@ -21,7 +21,8 @@ int main(void)
   keypad_Init();
 	portEinit();
 	falling_edges=0;
-  while (1)
+  LCD_Cmd(clear_display);
+	while (1)
   {
 		falling_edges = 0;
 		flag = 1;
@@ -39,9 +40,11 @@ int main(void)
 			 break;
 
       case 'B':
+				Beef();
         break;
 
       case 'C':
+				Chicken();
         break;
 
       case 'D':
@@ -69,7 +72,6 @@ int main(void)
 		leds_blink();
 		buzzer_off();			
 		LCD_Cmd(clear_display);
-
   }
 	
 	
