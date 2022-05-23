@@ -180,12 +180,12 @@ void D_Key (void){
 			}
 			break;
 		}	
-		flag = 0;
-		SW3_Flag = 1;
-		LCD_Write_Char('>');
 		do{
 			button_in2 = sw2_input();
 		}while(button_in2);
+		flag = 0;
+		SW3_Flag = 1;
+		LCD_Write_Char('>');
 		LCD_CountDown (secs,mins);
 }
 
