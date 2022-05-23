@@ -1,0 +1,12 @@
+.\keypad.o: keypad\keypad.c
+.\keypad.o: C:\Keil\ARM\Inc\TI\TM4C123\tm4c123gh6pm.h
+.\keypad.o: C:\Keil\ARM\CMSIS\Include\core_cm4.h
+.\keypad.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\keypad.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\keypad.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\keypad.o: C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
+.\keypad.o: C:\Keil\ARM\Inc\TI\TM4C123\system_TM4C123.h
+.\keypad.o: keypad\../timer/timer.h
+.\keypad.o: keypad\../timer/../tm4c123gh6pm.h
+.\keypad.o: C:\Keil\ARM\ARMCC\bin\..\include\inttypes.h
+.\keypad.o: keypad\keypad.h
