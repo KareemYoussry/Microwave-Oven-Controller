@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Microwave_Oven_Controller.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Microwave_Oven_Controller.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 24 00:04:55 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 24 00:07:39 2022
 <BR><P>
 <H3>Maximum Stack Usage =        116 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1308,10 +1308,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
 </UL>
 
-<P><STRONG><a name="[88]"></a>D_Key</STRONG> (Thumb, 286 bytes, Stack size 32 bytes, microwave_functions.o(.text))
+<P><STRONG><a name="[88]"></a>D_Key</STRONG> (Thumb, 304 bytes, Stack size 32 bytes, microwave_functions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = D_Key &rArr; check_Num &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_Num
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw2_input
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_Num
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_getkey
@@ -1378,6 +1379,7 @@ Global Symbols
 
 <P><STRONG><a name="[93]"></a>sw2_input</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, conditions_functions.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;popCorn
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
 </UL>
 
 <P><STRONG><a name="[7a]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))

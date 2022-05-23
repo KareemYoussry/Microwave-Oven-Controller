@@ -171,7 +171,6 @@ void D_Key (void){
 			time_Val_Min = mins[0] * 600 + mins[1] * 60 +secs[0]*10 + secs[1];
 			time_Val_Sec = secs[0]*10 + secs[1];
 			word[0] = 'X';  word[1] = 'X';  word[2] = ':';  word[3] = 'X';  word[4] = 'X';
-
 			if(time_Val_Min > 1800 || time_Val_Sec > 60 || time_Val_Min < 60) {
 				LCD_Cmd(clear_display);
 				LCD_String("Invalid Time!");
@@ -184,6 +183,9 @@ void D_Key (void){
 		flag = 0;
 		SW3_Flag = 1;
 		LCD_Write_Char('>');
+		do{
+			button_in2 = sw2_input();
+		}while(button_in2);
 		LCD_CountDown (secs,mins);
 }
 
