@@ -56,11 +56,10 @@ int main()
         break;
 
       case 'D':
-				SW1_f = 2;	
+				SW1_f = 2;
 				do{
 					SW1_to_clear = 2;
 					D_Key();
-					LCD_Cmd(clear_display);
 				}while(SW1_to_clear != 2);
 				SW1_f = 0;
     }
