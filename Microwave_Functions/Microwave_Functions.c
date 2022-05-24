@@ -186,20 +186,18 @@ void D_Key (void){
 			LCD_Cmd(clear_display);
 			continue;
 		}
-		do{
-			if(dKey_SW1_Flag == 2)
-				break;
-			button_in2 = sw2_input();
-		}while(button_in2);
-		if(dKey_SW1_Flag == 2)
-			continue;
-		flag = 0;
-		SW3_Flag = 1;
-		dKey_SW1_Flag = 1;
-		LCD_Write_Char('>');
-		LCD_CountDown (secs,mins);
 		break;
 	}	
+	do{
+		if(dKey_SW1_Flag == 2)
+			break;
+		button_in2 = sw2_input();
+	}while(button_in2);
+	flag = 0;
+	SW3_Flag = 1;
+	dKey_SW1_Flag = 1;
+	LCD_Write_Char('>');
+	LCD_CountDown (secs,mins);
 }
 
 char check_Num(unsigned char values [], int n){
