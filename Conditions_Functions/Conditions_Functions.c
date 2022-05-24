@@ -5,6 +5,9 @@
 volatile unsigned char falling_edges;
 volatile unsigned char flag; //a flag to exit the interrupt in the begginning
 volatile unsigned char SW3_Flag;
+volatile unsigned char SW1_to_clear; //flag for switch 1 to clear LCD on D-case
+volatile unsigned char SW1_f; //flag to till the interrupt we're coming from D: 2 to indicate we're coming from D case
+														  //                															: 0 to indicate nothing happened
 
 void portEinit(){
 	SYSCTL_RCGCGPIO_R |=0x10;
@@ -70,6 +73,10 @@ void  GPIOF_Handler()
 	if((GPIO_PORTF_MIS_R & 0X10)==0X10){	
 		int z = 0;
 		GPIO_PORTF_ICR_R |= 0X10;
+		if(SW1_f == 2 && SW1_to_clear == 2){
+			SW1_to_clear = 5;
+			return;
+		}
 		if(flag >= 1)
 			return;
 		if(falling_edges >= 2){

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Microwave_Oven_Controller.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Microwave_Oven_Controller.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 24 20:46:07 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 24 22:16:36 2022
 <BR><P>
 <H3>Maximum Stack Usage =        116 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1086,7 +1086,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 248 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 282 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = main &rArr; D_Key &rArr; check_Num &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portFinit
@@ -1155,7 +1155,6 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chicken
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beef
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1238,7 +1237,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[82]"></a>keypad_getkey</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, keypad.o(.text))
+<P><STRONG><a name="[82]"></a>keypad_getkey</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, keypad.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = keypad_getkey &rArr; Systick_Wait_us &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_us
@@ -1262,7 +1261,7 @@ Global Symbols
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beef
 </UL>
 
-<P><STRONG><a name="[85]"></a>popCorn</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, microwave_functions.o(.text))
+<P><STRONG><a name="[85]"></a>popCorn</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, microwave_functions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = popCorn &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw2_input
@@ -1274,7 +1273,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[86]"></a>Beef</STRONG> (Thumb, 216 bytes, Stack size 24 bytes, microwave_functions.o(.text))
+<P><STRONG><a name="[86]"></a>Beef</STRONG> (Thumb, 210 bytes, Stack size 24 bytes, microwave_functions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = Beef &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
@@ -1287,7 +1286,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[87]"></a>Chicken</STRONG> (Thumb, 212 bytes, Stack size 24 bytes, microwave_functions.o(.text))
+<P><STRONG><a name="[87]"></a>Chicken</STRONG> (Thumb, 200 bytes, Stack size 24 bytes, microwave_functions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = Chicken &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_CountDown
@@ -1308,7 +1307,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;D_Key
 </UL>
 
-<P><STRONG><a name="[88]"></a>D_Key</STRONG> (Thumb, 316 bytes, Stack size 32 bytes, microwave_functions.o(.text))
+<P><STRONG><a name="[88]"></a>D_Key</STRONG> (Thumb, 350 bytes, Stack size 32 bytes, microwave_functions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = D_Key &rArr; check_Num &rArr; LCD_StringPos &rArr; LCD_String &rArr; LCD_Write_Char &rArr; LCD_Cmd &rArr; LCD_Write_Hb &rArr; Systick_Wait_1us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw2_input
@@ -1317,7 +1316,6 @@ Global Symbols
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_StringPos
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keypad_getkey
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_ms
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Char
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Cmd
 </UL>
@@ -1339,7 +1337,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[28]"></a>GPIOF_Handler</STRONG> (Thumb, 212 bytes, Stack size 8 bytes, conditions_functions.o(.text))
+<P><STRONG><a name="[28]"></a>GPIOF_Handler</STRONG> (Thumb, 236 bytes, Stack size 8 bytes, conditions_functions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIOF_Handler &rArr; Systick_Wait_ms &rArr; Systick_Wait_1ms
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Systick_Wait_1ms

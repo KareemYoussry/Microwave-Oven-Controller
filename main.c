@@ -6,9 +6,11 @@
 
 extern volatile unsigned char falling_edges;
 extern volatile unsigned char SW3_Flag;
+extern volatile unsigned char SW1_to_clear; //flag for switch 1 to clear LCD on D-case
 extern volatile unsigned char flag; //1: for stopping in the interrupt
 																		//2: for D case to print error
-
+																		//3: for D case for the SW1
+extern volatile unsigned char SW1_f;
 enum States{
 	start,
 } states;
@@ -54,8 +56,13 @@ int main()
         break;
 
       case 'D':
-				D_Key();
-
+				SW1_f = 2;	
+				do{
+					SW1_to_clear = 2;
+					D_Key();
+					LCD_Cmd(clear_display);
+				}while(SW1_to_clear != 2);
+				SW1_f = 0;
     }
 		LCD_Cmd(clear_display);
 		SW3_Flag = 0;

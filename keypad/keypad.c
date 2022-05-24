@@ -1,6 +1,7 @@
 #include "tm4c123gh6pm.h"
 #include "../timer/timer.h"
 #include "keypad.h"
+extern volatile unsigned char SW1_to_clear; //flag for switch 1 to clear LCD on D-case: 5 to indicate SW1 clicked
 
 unsigned char keypad_symbols[ROW_NO][COL_NO] =	{
 {'1', '2', '3', 'A'},
@@ -27,6 +28,8 @@ char keypad_getkey(void)
 	int i, j;
 	while(1)
 	{
+		if(SW1_to_clear == 5)
+			return '0';
 		for(i = 0; i < COL_NO; i++)
 		{
 			GPIO_PORTC_DATA_R = (1U << (i+4));

@@ -6,6 +6,10 @@
 extern volatile unsigned char flag;
 extern volatile unsigned char falling_edges;
 extern volatile unsigned char SW3_Flag; //flag for switch 3
+extern volatile unsigned char SW1_to_clear; //flag for switch 1 to clear LCD on D-case: 5 to indicate SW1 clicked
+																						//																				: 2 to indicate nothing happen
+extern volatile unsigned char SW1_f;
+
 unsigned char button_in2;
 unsigned char button_in1;
 
@@ -22,7 +26,7 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 		if(min[0] == 0 && min[1] == 0 && sec[0] == 0 && sec[1] == 0)
 			return; //to make the exact needed countdown
 		
-		LCD_Cmd(SecondRow + 6);
+		LCD_Cmd(SecondRow);
 		//displaying time in this format XX:XX
 		LCD_Write_Char(min[0]+48);	//Writes the ASCII form of the minute tens
 		LCD_Write_Char(min[1]+48);	//Writes the ASCII form of the minute ones
@@ -60,7 +64,6 @@ void popCorn(void){
 		button_in2 = sw2_input();
   }while(button_in2);
 	flag = 0;
-	LCD_StringPos("Time: ", 2, 0);
 	leds_on();
 	SW3_Flag = 1;
 	LCD_CountDown(sec,mins);
@@ -78,6 +81,7 @@ void Beef(void){
 		if (input>'0'&&input<='9'){
 			input = keypad_getkey(); 
 			Systick_Wait_ms(250);
+			LCD_Cmd(clear_display);
 			break; 
 		}
 		else {
@@ -87,12 +91,9 @@ void Beef(void){
 			LCD_StringPos("Beef weight?",1,0);
 		}
 	}
-	
-	LCD_Cmd(SecondRow);
+	LCD_Cmd(clear_display);
 	LCD_Write_Char(input);
 	Systick_Wait_ms(2000);
-	LCD_Cmd(SecondRow + 3);
-    LCD_Write_Char('>');
 	flag = 0;
 	time = 30 * (input - '0');
 	mins[0] = 0;
@@ -123,11 +124,9 @@ void Chicken(void){
 			LCD_StringPos("Chicken weight?",1,0); 
 		}
 	}while(1);
-	LCD_Cmd(SecondRow);
+	LCD_Cmd(clear_display);
 	LCD_Write_Char(input);
-	Systick_Wait_ms(2000); 
-	LCD_Cmd(SecondRow + 3);
-    LCD_Write_Char('>');
+	Systick_Wait_ms(2000);
 	flag = 0; 
 	
 	input -= 48 ;
@@ -143,7 +142,7 @@ void Chicken(void){
 	LCD_CountDown(secs,mins);
 }
 
-char word[5] = "XX:XX";
+char word[6] = "XX:XX";
 
 void D_Key (void){
 	unsigned char secs [2],mins [2]; // declaring array for seconds and minutes
@@ -157,23 +156,26 @@ void D_Key (void){
 	{
 		LCD_Cmd(clear_display);
 		word[0] = 'X';  word[1] = 'X';  word[2] = ':';  word[3] = 'X';  word[4] = 'X';
-		LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
+		LCD_StringPos("Cooking Time:", 1, 0); // Displaying Cooking Time on LCD
 		for (ite = 0; ite < 4; ite++){  // Iterating to get values and print them on LCD
 			LCD_StringPos(word,2,0);
 			do{
 				values[ite] = keypad_getkey(); // Get value
+				if(SW1_to_clear == 5){
+					LCD_Cmd(clear_display);
+					return;
+				}
 			}while (values[ite] < '0' || values[ite] > '9');
 			Systick_Wait_ms(250);
 			f30 = check_Num(values,ite);
 		}
-
 		mins [0] = values[0]-48;
 		mins [1] = values[1]-48;
 		secs [0] = values[2]-48;
 		secs [1] = values[3]-48;
 		time_Val_Min = mins[0] * 600 + mins[1] * 60 +secs[0]*10 + secs[1];
 		time_Val_Sec = secs[0]*10 + secs[1];
-		if(time_Val_Min > 1800 || time_Val_Sec > 60 || time_Val_Min < 60) {
+		if(time_Val_Min > 1800 || time_Val_Sec >= 60 || time_Val_Min < 60) {
 			Systick_Wait_ms(500);
 			LCD_Cmd(clear_display);
 			LCD_String("Invalid Time!");
@@ -184,11 +186,14 @@ void D_Key (void){
 		break;
 	}	
 	do{
+		if(SW1_to_clear == 5)
+			return;
 		button_in2 = sw2_input();
 	}while(button_in2);
+	SW1_f = 0;
+	SW1_to_clear = 2;
 	flag = 0;
 	SW3_Flag = 1;
-	LCD_Write_Char('>');
 	LCD_CountDown (secs,mins);
 }
 
