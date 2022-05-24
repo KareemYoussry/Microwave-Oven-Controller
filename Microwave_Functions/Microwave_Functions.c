@@ -5,7 +5,8 @@
 #include "../Conditions_Functions/Conditions_Functions.h"
 extern volatile unsigned char flag;
 extern volatile unsigned char falling_edges;
-extern volatile unsigned char SW3_Flag; //falgg for switch 3
+extern volatile unsigned char SW3_Flag; //flag for switch 3
+volatile unsigned char dKey_SW1_Flag; //flag for switch 1 to re-enter in the DKey
 unsigned char button_in2;
 unsigned char button_in1;
 
@@ -142,51 +143,63 @@ void Chicken(void){
 	LCD_CountDown(secs,mins);
 }
 
-char word[5] = "XX:XX";
+char word[6] = "XX:XX";
 
 void D_Key (void){
-		unsigned char secs [2],mins [2]; // declaring array for seconds and minutes
-		unsigned char f30 = 0;	//to get a value smaller than 30
-		unsigned int time_Val_Min = 0;
-		unsigned int time_Val_Sec = 0;
-		
-		unsigned char values[4] = {0}; // declaring array to use for input values
-		int ite; // declaring iteration variable
-		while(1)
-		{
-			LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
-			for (ite = 0 ; ite <4 ; ite++){  // Iterating to get values and print them on LCD
-								LCD_StringPos(word,2,0);
-				do{
-					values[ite] = keypad_getkey(); // Get value
-				}while (values[ite] < '0' || values[ite] > '9');
-				Systick_Wait_ms(250);
-				f30 = check_Num(values,ite);
-			}
-			
-			mins [0] = values[0]-48;
-			mins [1] = values[1]-48;
-			secs [0] = values[2]-48;
-			secs [1] = values[3]-48;
-			time_Val_Min = mins[0] * 600 + mins[1] * 60 +secs[0]*10 + secs[1];
-			time_Val_Sec = secs[0]*10 + secs[1];
-			word[0] = 'X';  word[1] = 'X';  word[2] = ':';  word[3] = 'X';  word[4] = 'X';
-			if(time_Val_Min > 1800 || time_Val_Sec > 60 || time_Val_Min < 60) {
-				LCD_Cmd(clear_display);
-				LCD_String("Invalid Time!");
-				Systick_Wait_ms(2000);
-				LCD_Cmd(clear_display);
-				continue;
-			}
-			break;
-		}	
+	unsigned char secs [2],mins [2]; // declaring array for seconds and minutes
+	unsigned char f30 = 0;	//to get a value smaller than 30
+	unsigned int time_Val_Min = 0;
+	unsigned int time_Val_Sec = 0;
+	unsigned char values[4] = {0}; // declaring array to use for input values
+	int ite; // declaring iteration variable
+	
+	while(1)
+	{
+		LCD_Cmd(clear_display);
+		word[0] = 'X';  word[1] = 'X';  word[2] = ':';  word[3] = 'X';  word[4] = 'X';
+		LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
+		for (ite = 0; ite < 4; ite++){  // Iterating to get values and print them on LCD
+			LCD_StringPos(word,2,0);
+			do{
+				if(dKey_SW1_Flag == 2)
+					break;
+				values[ite] = keypad_getkey(); // Get value
+			}while (values[ite] < '0' || values[ite] > '9');
+			if(dKey_SW1_Flag == 2)
+				break;
+			Systick_Wait_ms(250);
+			f30 = check_Num(values,ite);
+		}
+		if(dKey_SW1_Flag == 2)
+			continue;
+		mins [0] = values[0]-48;
+		mins [1] = values[1]-48;
+		secs [0] = values[2]-48;
+		secs [1] = values[3]-48;
+		time_Val_Min = mins[0] * 600 + mins[1] * 60 +secs[0]*10 + secs[1];
+		time_Val_Sec = secs[0]*10 + secs[1];
+		word[0] = 'X';  word[1] = 'X';  word[2] = ':';  word[3] = 'X';  word[4] = 'X';
+		if(time_Val_Min > 1800 || time_Val_Sec > 60 || time_Val_Min < 60) {
+			LCD_Cmd(clear_display);
+			LCD_String("Invalid Time!");
+			Systick_Wait_ms(2000);
+			LCD_Cmd(clear_display);
+			continue;
+		}
 		do{
+			if(dKey_SW1_Flag == 2)
+				break;
 			button_in2 = sw2_input();
 		}while(button_in2);
+		if(dKey_SW1_Flag == 2)
+			continue;
 		flag = 0;
 		SW3_Flag = 1;
+		dKey_SW1_Flag = 1;
 		LCD_Write_Char('>');
 		LCD_CountDown (secs,mins);
+		break;
+	}	
 }
 
 char check_Num(unsigned char values [], int n){

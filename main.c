@@ -3,13 +3,17 @@
 #include "./keypad/keypad.h"
 #include "./Conditions_Functions/Conditions_Functions.h"
 #include "./Microwave_Functions/Microwave_Functions.h"
+
 extern volatile unsigned char falling_edges;
 extern volatile unsigned char flag; //1: for stopping in the interrupt
 																		//2: for D case to print error
 extern volatile unsigned char SW3_Flag;
 
+enum States{
+	start,
+} states;
 
-int main(void)
+int main()
 {
   char c;	
   portFinit();
