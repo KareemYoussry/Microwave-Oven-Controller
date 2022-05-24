@@ -5,9 +5,9 @@
 #include "./Microwave_Functions/Microwave_Functions.h"
 
 extern volatile unsigned char falling_edges;
+extern volatile unsigned char SW3_Flag;
 extern volatile unsigned char flag; //1: for stopping in the interrupt
 																		//2: for D case to print error
-extern volatile unsigned char SW3_Flag;
 
 enum States{
 	start,
@@ -32,7 +32,12 @@ int main()
 		LCD_String("Enter:");
     c = keypad_getkey();
     if(!(c == 'A'|| c == 'B'||c == 'C'||c == 'D'))
+		{
+			LCD_Cmd(clear_display);
+			LCD_String("Invlaid Input!");
+			Systick_Wait_ms(1000);
       continue;
+		}
     LCD_Write_Char(c);
     Systick_Wait_ms(250);
     switch(c){
@@ -50,7 +55,7 @@ int main()
 
       case 'D':
 				D_Key();
-        break;
+
     }
 		LCD_Cmd(clear_display);
 		SW3_Flag = 0;

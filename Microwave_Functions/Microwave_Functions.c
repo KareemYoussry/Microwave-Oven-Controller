@@ -6,10 +6,8 @@
 extern volatile unsigned char flag;
 extern volatile unsigned char falling_edges;
 extern volatile unsigned char SW3_Flag; //flag for switch 3
-volatile unsigned char dKey_SW1_Flag; //flag for switch 1 to re-enter in the DKey
 unsigned char button_in2;
 unsigned char button_in1;
-
 
 //Counter in minutes and seconds (making the count down appear in the LCD)
 //sec[]: 2d-array:{tens of seconds, ones of seconds} as this {5,9} = 59 second
@@ -21,8 +19,10 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 	unsigned char Mins = min[0];
 	for(Mins = min[0]; min[0] <= Mins && falling_edges!=2;sec[1]--)
 	{
+		if(min[0] == 0 && min[1] == 0 && sec[0] == 0 && sec[1] == 0)
+			return; //to make the exact needed countdown
+		
 		LCD_Cmd(SecondRow + 6);
-
 		//displaying time in this format XX:XX
 		LCD_Write_Char(min[0]+48);	//Writes the ASCII form of the minute tens
 		LCD_Write_Char(min[1]+48);	//Writes the ASCII form of the minute ones
@@ -30,7 +30,7 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 		LCD_Write_Char(sec[0]+48);	//Writes the ASCII form of the second tens
 		LCD_Write_Char(sec[1]+48);	//Writes the ASCII form of the second ones
 		
-		Systick_Wait_ms(300);  //counting down time each sec
+		Systick_Wait_ms(1000);  //counting down time each sec
 
 		//to be a timer
 		if(sec[1] < 1 || sec[1] > 9)
@@ -52,7 +52,7 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 }
 
 void popCorn(void){
-	unsigned char mins[2] = {0, 0},sec[2]={5,0};
+	unsigned char mins[2] = {0, 1},sec[2]={0,0};
 	
 	LCD_Cmd(clear_display);
 	LCD_StringPos("Popcorn", 1, 0);
@@ -143,7 +143,7 @@ void Chicken(void){
 	LCD_CountDown(secs,mins);
 }
 
-char word[6] = "XX:XX";
+char word[5] = "XX:XX";
 
 void D_Key (void){
 	unsigned char secs [2],mins [2]; // declaring array for seconds and minutes
@@ -161,25 +161,20 @@ void D_Key (void){
 		for (ite = 0; ite < 4; ite++){  // Iterating to get values and print them on LCD
 			LCD_StringPos(word,2,0);
 			do{
-				if(dKey_SW1_Flag == 2)
-					break;
 				values[ite] = keypad_getkey(); // Get value
 			}while (values[ite] < '0' || values[ite] > '9');
-			if(dKey_SW1_Flag == 2)
-				break;
 			Systick_Wait_ms(250);
 			f30 = check_Num(values,ite);
 		}
-		if(dKey_SW1_Flag == 2)
-			continue;
+
 		mins [0] = values[0]-48;
 		mins [1] = values[1]-48;
 		secs [0] = values[2]-48;
 		secs [1] = values[3]-48;
 		time_Val_Min = mins[0] * 600 + mins[1] * 60 +secs[0]*10 + secs[1];
 		time_Val_Sec = secs[0]*10 + secs[1];
-		word[0] = 'X';  word[1] = 'X';  word[2] = ':';  word[3] = 'X';  word[4] = 'X';
 		if(time_Val_Min > 1800 || time_Val_Sec > 60 || time_Val_Min < 60) {
+			Systick_Wait_ms(500);
 			LCD_Cmd(clear_display);
 			LCD_String("Invalid Time!");
 			Systick_Wait_ms(2000);
@@ -189,13 +184,10 @@ void D_Key (void){
 		break;
 	}	
 	do{
-		if(dKey_SW1_Flag == 2)
-			break;
 		button_in2 = sw2_input();
 	}while(button_in2);
 	flag = 0;
 	SW3_Flag = 1;
-	dKey_SW1_Flag = 1;
 	LCD_Write_Char('>');
 	LCD_CountDown (secs,mins);
 }

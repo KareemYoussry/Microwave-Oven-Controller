@@ -5,7 +5,6 @@
 volatile unsigned char falling_edges;
 volatile unsigned char flag; //a flag to exit the interrupt in the begginning
 volatile unsigned char SW3_Flag;
-extern volatile unsigned char dKey_SW1_Flag;
 
 void portEinit(){
 	SYSCTL_RCGCGPIO_R |=0x10;
@@ -70,11 +69,7 @@ void  GPIOF_Handler()
 {
 	if((GPIO_PORTF_MIS_R & 0X10)==0X10){	
 		int z = 0;
-		GPIO_PORTF_ICR_R |=0X10;
-		if(dKey_SW1_Flag){
-			dKey_SW1_Flag = 2;	
-			return;
-		}
+		GPIO_PORTF_ICR_R |= 0X10;
 		if(flag >= 1)
 			return;
 		if(falling_edges >= 2){
