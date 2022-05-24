@@ -2,11 +2,14 @@
 #include "../LCD/LCD.h"
 #include "../keypad/keypad.h"
 #include "Microwave_Functions.h"
-#include "../CONDITIONS_FUNCTIONS/CONDITION_FUNCTIONS.h"
+#include "../Conditions_Functions/Conditions_Functions.h"
 extern volatile unsigned char flag;
 extern volatile unsigned char falling_edges;
+extern volatile unsigned char SW3_Flag; //flag for switch 3
+volatile unsigned char dKey_SW1_Flag; //flag for switch 1 to re-enter in the DKey
 unsigned char button_in2;
 unsigned char button_in1;
+
 
 //Counter in minutes and seconds (making the count down appear in the LCD)
 //sec[]: 2d-array:{tens of seconds, ones of seconds} as this {5,9} = 59 second
@@ -59,7 +62,7 @@ void popCorn(void){
 	flag = 0;
 	LCD_StringPos("Time: ", 2, 0);
 	leds_on();
-
+	SW3_Flag = 1;
 	LCD_CountDown(sec,mins);
 	
 	LCD_Cmd(clear_display);
@@ -67,7 +70,6 @@ void popCorn(void){
 
 void Beef(void){
 	unsigned char secs [2],mins [2]; // declaring array for seconds and minutes;
-	unsigned char weight = 0;
 	int time = 0;
 	unsigned char input;
 	LCD_StringPos("Beef weight?",1,0); 
@@ -82,6 +84,7 @@ void Beef(void){
 			LCD_StringPos("Err", 2, 0);
 			Systick_Wait_ms(2000); 
 			LCD_Cmd(clear_display);
+			LCD_StringPos("Beef weight?",1,0);
 		}
 	}
 	
@@ -96,7 +99,7 @@ void Beef(void){
 	mins[1] = time /60;
 	secs[0] = (time%60) / 10 ;
 	secs[1] = time - mins[1] * 60 - secs[0] * 10;
-	
+	SW3_Flag = 1;
 	LCD_CountDown (secs,mins);
 
 }
@@ -116,6 +119,8 @@ void Chicken(void){
 		else { 
 			LCD_StringPos("Err", 2, 0);
 			Systick_Wait_ms(2000); 
+			LCD_Cmd(clear_display);
+			LCD_StringPos("Chicken weight?",1,0); 
 		}
 	}while(1);
 	LCD_Cmd(SecondRow);
@@ -133,68 +138,93 @@ void Chicken(void){
 	mins[1]	=	(time/60)%10 ;	// calculate units of minutes
 	secs[0]	=	(time%60)/10;		// calculate tens of seconds 
 	secs[1]	=	(time%60)%10 ;	// calculate units of seconds 
+	
+	SW3_Flag = 1;
 	LCD_CountDown(secs,mins);
 }
 
+char word[6] = "XX:XX";
 
 void D_Key (void){
-		unsigned char secs [2],mins [2]; // declaring array for seconds and minutes
-		unsigned char ff = 0;	
-		unsigned char values[4]; // declaring array to use for input values
-		int ite; // declaring iteration variable
-
+	unsigned char secs [2],mins [2]; // declaring array for seconds and minutes
+	unsigned char f30 = 0;	//to get a value smaller than 30
+	unsigned int time_Val_Min = 0;
+	unsigned int time_Val_Sec = 0;
+	unsigned char values[4] = {0}; // declaring array to use for input values
+	int ite; // declaring iteration variable
+	
+	while(1)
+	{
+		LCD_Cmd(clear_display);
+		word[0] = 'X';  word[1] = 'X';  word[2] = ':';  word[3] = 'X';  word[4] = 'X';
 		LCD_StringPos("Cooking Time?", 1, 0); // Displaying Cooking Time on LCD
-
-		for (ite = 0 ; ite <4 ; ite++){  // Iterating to get values and print them on LCD
+		for (ite = 0; ite < 4; ite++){  // Iterating to get values and print them on LCD
+			LCD_StringPos(word,2,0);
 			do{
+				if(dKey_SW1_Flag == 2)
+					break;
 				values[ite] = keypad_getkey(); // Get value
-			}while (values[ite] < '0' && values[ite] > '9');
+			}while (values[ite] < '0' || values[ite] > '9');
+			if(dKey_SW1_Flag == 2)
+				break;
 			Systick_Wait_ms(250);
-			ff = check_Num(values,ite);
-			if(ff)
-			{
-				flag = 2;
-				return;
-			}
+			f30 = check_Num(values,ite);
 		}
-		
+		if(dKey_SW1_Flag == 2)
+			continue;
 		mins [0] = values[0]-48;
 		mins [1] = values[1]-48;
 		secs [0] = values[2]-48;
 		secs [1] = values[3]-48;
-		flag = 0;
-
-		
-		LCD_CountDown (secs,mins);
+		time_Val_Min = mins[0] * 600 + mins[1] * 60 +secs[0]*10 + secs[1];
+		time_Val_Sec = secs[0]*10 + secs[1];
+		word[0] = 'X';  word[1] = 'X';  word[2] = ':';  word[3] = 'X';  word[4] = 'X';
+		if(time_Val_Min > 1800 || time_Val_Sec > 60 || time_Val_Min < 60) {
+			LCD_Cmd(clear_display);
+			LCD_String("Invalid Time!");
+			Systick_Wait_ms(2000);
+			LCD_Cmd(clear_display);
+			continue;
+		}
+		break;
+	}	
+	do{
+		if(dKey_SW1_Flag == 2)
+			break;
+		button_in2 = sw2_input();
+	}while(button_in2);
+	flag = 0;
+	SW3_Flag = 1;
+	dKey_SW1_Flag = 1;
+	LCD_Write_Char('>');
+	LCD_CountDown (secs,mins);
 }
 
 char check_Num(unsigned char values [], int n){
-	char word[5] = "00:00";
-			switch (n){
-				case 0: // first case: first digit is entered
-					word[4] = values[0];
-					LCD_StringPos(word,2,0);
-					break;	
-				case 1: // Second case: second digit is entered
-					word[4] = values[1];
-					word[3] = values[0];
-					LCD_StringPos(word,2,0);
-					break;
-				case 2: // Third case: third digit is entered
-					word[4] = values[2];
-					word[3] = values[1];
-					word[1] = values[0];
-					LCD_StringPos(word,2,0);
-					break;
-				case 3: // Fourth case: fourth digit is entered
-					if ((values[0] >='3') && (values[1] > '0'))
-						return 1;
-					word[4] = values[3];
-					word[3] = values[2];
-					word[1] = values[1];
-					word[0] = values[0];
-					LCD_StringPos(word,2,0);
-					break;
-		}
+
+	switch (n){
+		case 0: // first case: first digit is entered
+			word[4] = values[0];
+			LCD_StringPos(word,2,0);
+			break;	
+		case 1: // Second case: second digit is entered
+			word[4] = values[1];
+			word[3] = values[0];
+			LCD_StringPos(word,2,0);
+			break;
+		case 2: // Third case: third digit is entered
+			word[4] = values[2];
+			word[3] = values[1];
+			word[1] = values[0];
+			LCD_StringPos(word,2,0);
+			break;
+		case 3: // Fourth case: fourth digit is entered
+			word[4] = values[3];
+			word[3] = values[2];
+			word[1] = values[1];
+			word[0] = values[0];
+			LCD_StringPos(word,2,0);
+			break;
+	}
 			return 0;
 }
