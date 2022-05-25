@@ -8,8 +8,6 @@
 void portEinit(void);
 void portFinit(void);
 void portDinit(void);
-void pause(void);
-void stop_cooking(void);
 void leds_on(void);
 void leds_off(void);
 void leds_blink(void);

@@ -3,6 +3,7 @@
 #include "../keypad/keypad.h"
 #include "Microwave_Functions.h"
 #include "../Conditions_Functions/Conditions_Functions.h"
+
 extern volatile unsigned char flag;
 extern volatile unsigned char falling_edges;
 extern volatile unsigned char SW3_Flag; //flag for switch 3
@@ -36,7 +37,7 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 		
 		Systick_Wait_ms(1000);  //counting down time each sec
 
-		//to be a timer
+		// to count down
 		if(sec[1] < 1 || sec[1] > 9)
 		{
 			sec[1] = 10;
@@ -55,6 +56,7 @@ void LCD_CountDown(unsigned char sec[],unsigned char min[])
 	}
 }
 
+// Popcorn prints "Popcorn" and counts down 1 minute
 void popCorn(void){
 	unsigned char mins[2] = {0, 1},sec[2]={0,0};
 	
@@ -71,6 +73,7 @@ void popCorn(void){
 	LCD_Cmd(clear_display);
 }
 
+// Beef asks the user for the beef weight and counts down according to the defrostation rate of beef
 void Beef(void){
 	unsigned char secs [2],mins [2]; // declaring array for seconds and minutes;
 	int time = 0;
@@ -105,6 +108,7 @@ void Beef(void){
 
 }
 
+// Chicked asks the user for the chicked weight and counts down according to the defrostation rate of chickens
 void Chicken(void){
 	unsigned char input=0;
 	unsigned char mins[2];
@@ -144,6 +148,7 @@ void Chicken(void){
 
 char word[6] = "XX:XX";
 
+// D_Key asks the user for a valid time, printing each digit from right to left and counts down after 4 digits
 void D_Key (void){
 	unsigned char secs [2],mins [2]; // declaring array for seconds and minutes
 	unsigned char f30 = 0;	//to get a value smaller than 30
@@ -175,7 +180,7 @@ void D_Key (void){
 		secs [1] = values[3]-48;
 		time_Val_Min = mins[0] * 600 + mins[1] * 60 +secs[0]*10 + secs[1];
 		time_Val_Sec = secs[0]*10 + secs[1];
-		if(time_Val_Min > 1800 || time_Val_Sec >= 60 || time_Val_Min < 60) {
+		if(time_Val_Min > 1800 || time_Val_Sec >= 60 || time_Val_Min < 60){ // Checks for the validity of the time entered
 			Systick_Wait_ms(500);
 			LCD_Cmd(clear_display);
 			LCD_String("Invalid Time!");
@@ -197,6 +202,7 @@ void D_Key (void){
 	LCD_CountDown (secs,mins);
 }
 
+// check_Num prints each number from right to left
 char check_Num(unsigned char values [], int n){
 
 	switch (n){
